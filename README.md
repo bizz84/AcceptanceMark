@@ -152,6 +152,13 @@ Until this is implemented, all preloading can be done directly in the test runne
 * _**Q**: I want to preload a JSON file for all tests running on a given table. Can I do that?_
 * **A**: You could do that directly by adding the JSON loading code directly in the test runner's `setUp()` method. For extra flexibility you could specify the JSON file name as an input parameter of your test set, and have your test runner load that file from the bundle.
 
+## Compilation / Installation
+
+AcceptanceMark includes `amtool`, a command line tool that needs to run as a pre-compilation step for the desired project Unit Test or UI Test targets.
+
+Xcode 8 is required as `amtool` is written in Swift 3 and generates Swift 3 test code. At the time of writing, support for generation of Swift 2.x test code is not planned.
+
+`amtool` will likely be distributed with the Swift Package Manager.
 
 ## LICENSE
 

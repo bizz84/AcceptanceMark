@@ -16,10 +16,11 @@ AcceptanceMark is a tool for running Acceptance Tests in Xcode, inspired by [Fit
 
 ### The solution: AcceptanceMark
 
-AcceptanceMark is the perfect tool to write acceptance tests a-la Fitnesse, while integrating seamlessly with XCTest.
+AcceptanceMark is the perfect tool to write Fitnesse-style acceptance tests, while integrating seamlessly with XCTest.
 
 * Write tests in markdown with tables.
-* Auto-generated XCTest boilerplate code for tests with **strong-typed input/outputs**.
+* Auto-generated XCTest boilerplate code for tests with **strong-typed input/outputs**. 
+  * **You only write your business logic in the test runners**.
 * Easy to integrate with both Unit Tests and UI Tests.
 
 ### How does this work?
@@ -36,6 +37,8 @@ image-tests.md
 | available.png || true         |
 | missing.png   || false        |
 ```
+
+_NOTE: The double-pipe syntax (`||`) is used as a delimiter between inputs and outputs. All test sets should have **exactly one** delimiter._
 
 Run AcceptanceMark as an XCode pre-compilation phase, which generates all the required test harness:
 
@@ -104,7 +107,7 @@ func == (lhs: ImageTests_ImageLoadingResult, rhs: ImageTests_ImageLoadingResult)
 }
 ```
 
-Write your test runner:
+Finally, write your test runner:
 
 ```
 class ImageTests_ImageLoadingTestRunner: ImageTests_ImageLoadingTestRunnable {
@@ -115,3 +118,11 @@ class ImageTests_ImageLoadingTestRunner: ImageTests_ImageLoadingTestRunnable {
     }
 }
 ```
+
+### Notes
+
+* Note the functional style of the test runner. It is simply a method that takes a stronly-typed input value, and returns a strongly-typed output value. **No state, no side effects**.
+
+* As it is common for XCTests to have a `setUp()` method that is typically used to initialise each test with some state. While this _will_ be supported in **AcceptanceMark**, a more **functional style is preferred and encouraged**.
+
+

@@ -16,12 +16,12 @@ AcceptanceMark is a tool for running Acceptance Tests in Xcode, inspired by [Fit
 
 ### The solution: AcceptanceMark
 
-AcceptanceMark is the perfect tool to write Fitnesse-style acceptance tests, while integrating seamlessly with XCTest.
+AcceptanceMark is the ideal tool to write Fitnesse-style acceptance tests that integrate seamlessly with XCTest:
 
-* Write tests in markdown with tables.
-* Auto-generated XCTest boilerplate code for tests with **strong-typed input/outputs**. 
-  * **You only write your business logic in the test runners**.
-* Easy to integrate with both Unit Tests and UI Tests.
+* Write your tests inputs and expected values in markdown tables.
+* AcceptanceMark generates XCTest test classes with **strong-typed input/outputs**. 
+* Write test runners to evaluate the system under test with the given inputs.
+* Run the chosen test target (Unit Tests or UI Tests both supported) and get a test report.
 
 ### How does this work?
 
@@ -40,7 +40,7 @@ image-tests.md
 
 _NOTE: The double-pipe syntax (`||`) is used as a delimiter between inputs and outputs. All test sets should have **exactly one** delimiter._
 
-Run AcceptanceMark as an XCode pre-compilation phase, which generates all the required test harness:
+Run `amtool` as an XCode pre-compilation phase, which generates all the required test harness:
 
 ```
 /*
@@ -73,7 +73,6 @@ struct ImageTests_ImageLoadingResult: Equatable {
 protocol ImageTests_ImageLoadingTestRunnable {
     func run(input: ImageTests_ImageLoadingInput) throws -> ImageTests_ImageLoadingResult
 }
-
 
 class ImageTests_ImageLoadingTests: XCTestCase {
     

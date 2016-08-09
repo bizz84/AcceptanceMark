@@ -45,6 +45,8 @@
 /* Begin PBXFileReference section */
 		65BCCFE71D59E7E30062E238 /* amtool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = amtool; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BCCFE91D59E7E30062E238 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		65BCCFEE1D5A29340062E238 /* amtool-spec.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "amtool-spec.md"; sourceTree = "<group>"; };
+		65BCCFEF1D5A29340062E238 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		65C051C31D58ABAD0008892C /* AcceptanceMark.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AcceptanceMark.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65C051C61D58ABAD0008892C /* AcceptanceMark.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcceptanceMark.h; sourceTree = "<group>"; };
 		65C051C71D58ABAD0008892C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,6 +108,8 @@
 		65C051B91D58ABAD0008892C = {
 			isa = PBXGroup;
 			children = (
+				65BCCFEE1D5A29340062E238 /* amtool-spec.md */,
+				65BCCFEF1D5A29340062E238 /* README.md */,
 				65C051E31D58AC330008892C /* AcceptanceMarkDemo */,
 				65C051D31D58ABE80008892C /* AcceptanceMarkDemoTests */,
 				65C051C51D58ABAD0008892C /* AcceptanceMark */,

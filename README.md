@@ -122,7 +122,7 @@ class ImageTests_ImageLoadingTestRunner: ImageTests_ImageLoadingTestRunnable {
 
 * Note the functional style of the test runner. It is simply a method that takes a stronly-typed input value, and returns a strongly-typed output value. **No state, no side effects**.
 
-* As it is common for XCTests to have a `setUp()` method that is typically used to initialise each test with some state. While this _will_ be supported in **AcceptanceMark**, a more **functional style is preferred and encouraged**.
+* XCTests can have a `setUp()` method that is used to initialise all tests with the same initial state. While this _will_ be supported in **AcceptanceMark**, **state-less tests are preferred and encouraged here**.
 
 ## FAQ
 

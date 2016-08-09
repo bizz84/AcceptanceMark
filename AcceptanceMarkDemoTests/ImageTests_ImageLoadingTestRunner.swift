@@ -12,6 +12,6 @@ class ImageTests_ImageLoadingTestRunner: ImageTests_ImageLoadingTestRunnable {
 
     func run(input: ImageTests_ImageLoadingInput) throws -> ImageTests_ImageLoadingResult {
         return ImageTests_ImageLoadingResult(loaded: true)
-        //throw Error.TestNotImplemented
+        //throw Swift.Error
     }
 }

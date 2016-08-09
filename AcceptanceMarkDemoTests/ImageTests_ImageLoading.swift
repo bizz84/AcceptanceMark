@@ -1,11 +1,10 @@
 //
-//  _FITImageLoadingTests.swift
-//  FitMark
+//  ImageTests_ImageLoadingTests.swift
+//  AcceptanceMark
 //
-//  Created by Andrea Bizzotto on 29/06/2016.
+//  Auto Generated file - DO NOT EDIT
 //  Copyright © 2016 musevisions. All rights reserved.
 //
-// Auto Generated
 
 import UIKit
 import XCTest
@@ -17,10 +16,10 @@ import AcceptanceMark
  *
  * ## Image Loading
  *
- * | name:String  || loaded:Bool  |
- * | ------------ || ------------ |
- * | close.png    || true         |
- * | missing.png  || false        |
+ * | name:String   || loaded:Bool  |
+ * | ------------- || ------------ |
+ * | available.png || true         |
+ * | missing.png   || false        |
  *
  */
 
@@ -38,34 +37,29 @@ protocol ImageTests_ImageLoadingTestRunnable {
 
 
 class ImageTests_ImageLoadingTests: XCTestCase {
-
+    
     var testRunner: ImageTests_ImageLoadingTestRunnable!
     
+    
     override func setUp() {
+        // MARK: Implement the ImageTests_ImageLoadingTestRunner() class!
         testRunner = ImageTests_ImageLoadingTestRunner()
     }
     
     func testImageLoading_0() {
         
-        let input = try! parseInput(row: 0)
-        let expected = try! parseOutput(row: 0)
+        let input = ImageTests_ImageLoadingInput(name: "available.png")
+        let expected = ImageTests_ImageLoadingResult(loaded: true)
         let result = try! testRunner.run(input: input)
         XCTAssertEqual(expected, result)
     }
-
+    
     func testImageLoading_1() {
         
-        let input = try! parseInput(row: 1)
-        let expected = try! parseOutput(row: 1)
+        let input = ImageTests_ImageLoadingInput(name: "missing.png")
+        let expected = ImageTests_ImageLoadingResult(loaded: false)
         let result = try! testRunner.run(input: input)
         XCTAssertEqual(expected, result)
-    }
-
-    private func parseInput(row: Int) throws -> ImageTests_ImageLoadingInput {
-        return ImageTests_ImageLoadingInput(name: "test") // TODO: Parse
-    }
-    private func parseOutput(row: Int) throws -> ImageTests_ImageLoadingResult {
-        return ImageTests_ImageLoadingResult(loaded: true) // TODO: Parse
     }
 }
 

@@ -336,7 +336,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./amtool --input-dir acceptance-tests/  ";
+			shellScript = "#./amtool --input-dir acceptance-tests/";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -96,7 +96,7 @@ The test generator transforms a given input file into a data structure that can 
 
 Given the following representation of a test set:
 
-```
+```swift
 struct TestSpec {
 	let fileName: String
 	let title: String
@@ -138,7 +138,7 @@ When this sample input file is parsed:
 
 Then, the test generator should create the following `TestSpec`:
 
-```
+```swift
 let inputVars = [ Variable(name: "name", type: .String) ]
 let outputVars = [ Variable(name: "loaded", type: .Bool) ]
 TestSpec(fileName: "image-tests", title: "Image Loading",
@@ -154,7 +154,7 @@ This `TestSpec` can then be used to generate the `acceptancemark/ImageTests_Imag
 
 ### Sample implementation
 
-```
+```swift
 func generateTestClass(testSpec: TestSpec) {
 
 	let fileHandle = NSFileManager.openForWriting(name: testSpec.filePath)

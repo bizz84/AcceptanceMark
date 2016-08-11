@@ -7,8 +7,8 @@
 //
 
 struct TestSpec {
-    let fileName: String
-    let title: String
+    var fileName: String = ""
+    var title: String = ""
     
     enum VariableType {
         case bool
@@ -27,10 +27,10 @@ struct TestSpec {
         let outputs: [ Any ]
     }
     
-    let inputs: [ Variable ]
-    let outputs: [ Variable ]
+    var inputs: [ Variable ] = []
+    var outputs: [ Variable ] = []
     
-    let tests: [ TestData ]
+    var tests: [ TestData ] = []
 }
 
 extension TestSpec: CustomDebugStringConvertible {

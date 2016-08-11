@@ -65,11 +65,30 @@ class MarkdownDocumentParser: NSObject {
      */
     class func parse(lines: [String], inputFilePath: String) -> [TestSpec] {
         
+        var testSpec = TestSpec()
+
+        let pathComponents = (inputFilePath as NSString).components(separatedBy: "/")
+        testSpec.fileName = pathComponents.last ?? ""
+        
+        
         for line in lines {
-            print("\(line)")
+            switch MarkdownLineType(line: line) {
+            case .heading:
+                testSpec.title = parseHeading(line: line)
+                print(line)
+            case .table:
+                print(line)
+            case .other:
+                break
+            }
         }
         // Split filename
-        return [ TestSpec(fileName: inputFilePath, title: "", inputs: [], outputs: [], tests: []) ]
+        return [ testSpec ]
+    }
+    
+    class func parseHeading(line: String) -> String {
+        // Trim all non alphanumeric characters
+        return (line as NSString).trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
     }
 }
 

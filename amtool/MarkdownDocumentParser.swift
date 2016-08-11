@@ -18,7 +18,7 @@ extension String {
 
 enum MarkdownParseResult {
     case error(message: String)
-    case success
+    case success(testSpecs: [TestSpec])
 }
 
 class MarkdownDocumentParser: NSObject {
@@ -33,7 +33,20 @@ class MarkdownDocumentParser: NSObject {
         }
         
         let lines = string.lines.filter { return $0.characters.count > 0 }
-
-        return .error(message: "not implemented")
+        
+        let testSpecs = parse(lines: lines, inputFilePath: inputFilePath)
+        
+        return .success(testSpecs: testSpecs)
+    }
+    
+    /*
+     * Method to parse markdown lines array into array of TestSpecs. 
+     * - Beginning of a TestSpec is marked by a heading line (one or more # characters)
+     * - End of a TestSpec is marked by a new heading line, or end of file
+     */
+    class func parse(lines: [String], inputFilePath: String) -> [TestSpec] {
+        
+        // Split filename
+        return [ TestSpec(fileName: inputFilePath, title: "", inputs: [], outputs: [], tests: []) ]
     }
 }

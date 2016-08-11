@@ -20,9 +20,10 @@ if !FileManager.default.fileExists(atPath: inputFilePath) {
     exit(0)
 }
 
-if case .error(let message) = MarkdownDocumentParser.parse(inputFilePath: inputFilePath) {
+switch MarkdownDocumentParser.parse(inputFilePath: inputFilePath) {
+case .error(let message):
     print(message)
     exit(0)
+case .success(let testSpecs):
+    print(testSpecs)
 }
-
-//CMDocumentParser.parse(data: data, inputFilePath: inputFilePath)

@@ -160,6 +160,17 @@ Xcode 8 is required as `amtool` is written in Swift 3 and generates Swift 3 test
 
 `amtool` will likely be distributed with the Swift Package Manager.
 
+### amtool
+
+`amtool` uses [CocoaMarkdown](https://github.com/indragiek/CocoaMarkdown) as a Markdown parser, which has the following dependencies:
+
+* cmark
+* ono
+
+In order to compile these, `cmake` is required and can be installed with `brew`. See [this Stackoverflow post](http://stackoverflow.com/questions/24652996/homebrew-not-working-on-osx) if you are experiencing problems with Brew on macOS.
+
+  
+
 ## LICENSE
 
 MIT License. See the [license file](LICENSE.md) for details.

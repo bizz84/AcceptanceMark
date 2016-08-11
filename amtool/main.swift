@@ -20,10 +20,15 @@ if !FileManager.default.fileExists(atPath: inputFilePath) {
     exit(0)
 }
 
-switch MarkdownDocumentParser.parse(inputFilePath: inputFilePath) {
-case .error(let message):
-    print(message)
+guard let data = FileManager.default.contents(atPath: inputFilePath) else {
+    print("Invalid file contents at path: \(inputFilePath)")
     exit(0)
-case .success(let testSpecs):
-    print(testSpecs)
 }
+
+guard let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String else {
+    print("Could not decode file contents at path: \(inputFilePath)")
+    exit(0)
+}
+
+let result = MarkdownDocumentParser.parse(fileContents: string, inputFilePath: inputFilePath)
+print(result.testSpecs)

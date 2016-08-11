@@ -16,27 +16,46 @@ extension String {
     }
 }
 
-enum MarkdownParseResult {
-    case error(message: String)
-    case success(testSpecs: [TestSpec])
+struct MarkdownParseResult {
+    let testSpecs: [TestSpec]
+}
+
+enum MarkdownLineType {
+    case heading
+    case table
+    case other
+    
+    init(line: String) {
+        if let first = line.characters.first {
+            if first == "#" {
+                self = .heading
+            }
+            else if first == "|" {
+                self = .table
+            }
+            else {
+                self = .other
+            }
+        }
+        else {
+            self = .other
+        }
+    }
 }
 
 class MarkdownDocumentParser: NSObject {
 
-    class func parse(inputFilePath: String) -> MarkdownParseResult {
-        guard let data = FileManager.default.contents(atPath: inputFilePath) else {
-            return .error(message: "Invalid file contents at path: \(inputFilePath)")
-        }
+    class func parse(fileContents: String, inputFilePath: String) -> MarkdownParseResult {
         
-        guard let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String else {
-            return .error(message: "Could not decode file contents at path: \(inputFilePath)")
+        let lines = fileContents.lines.map {
+            return ($0 as NSString).trimmingCharacters(in: CharacterSet.whitespaces)
+        }.filter {
+            return MarkdownLineType(line: $0) != .other
         }
-        
-        let lines = string.lines.filter { return $0.characters.count > 0 }
         
         let testSpecs = parse(lines: lines, inputFilePath: inputFilePath)
         
-        return .success(testSpecs: testSpecs)
+        return MarkdownParseResult(testSpecs: testSpecs)
     }
     
     /*
@@ -46,7 +65,12 @@ class MarkdownDocumentParser: NSObject {
      */
     class func parse(lines: [String], inputFilePath: String) -> [TestSpec] {
         
+        for line in lines {
+            print("\(line)")
+        }
         // Split filename
         return [ TestSpec(fileName: inputFilePath, title: "", inputs: [], outputs: [], tests: []) ]
     }
 }
+
+// TODO: MarkdownDocumentParserTests

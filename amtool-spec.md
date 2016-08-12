@@ -89,6 +89,10 @@ func == (lhs: ImageTests_ImageLoadingResult, rhs: ImageTests_ImageLoadingResult)
 - [x] Add **Xcode macOS Command Line Tool** target to project, named `amtool`
 - [ ] Parse `--input-dir` and `-i` command line argument to specify input directory for reading `.md` files
 - [ ] For each `.md` file in input directory, run test generator component
+- [x] Parse file name
+- [x] Parse heading
+- [x] Parse tables
+- [x] Combine together into `TestSpec` structure
 
 ### Test Generator specification
 

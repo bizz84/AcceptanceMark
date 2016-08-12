@@ -47,7 +47,7 @@ struct TestSpec {
         let inputs: [ String ] // Should be Any?
         let outputs: [ String ] // Should be Any?
         var debugDescription: String {
-            return "\ninputs: \(inputs), outputs: \(outputs)"
+            return "\n          I: \(inputs), O: \(outputs)"
         }
     }
     
@@ -60,6 +60,6 @@ struct TestSpec {
 extension TestSpec: CustomDebugStringConvertible {
     
     var debugDescription: String {
-        return "fileName: \(fileName)\ntitle: \(title)\nI: \(inputVars), O: \(outputVars)\ntests:\(tests)\n"
+        return "\n  fileName: \(fileName)\n     title: \(title)\n  header I: \(inputVars), O: \(outputVars)\n     tests:\(tests)\n"
     }
 }

@@ -80,10 +80,10 @@ class MarkdownDocumentParser: NSObject {
             case .heading:
                 if update(testSpec: &testSpec, with: tableParser) {
                     testSpecs.append(testSpec)
+                    tableParser.parseTableFinished()
                 }
             
                 // new test spec
-                testSpec = TestSpec()
                 testSpec.title = parseHeading(line: line)
             case .table:
                 let _ = tableParser.parseTable(line: line)
@@ -94,6 +94,7 @@ class MarkdownDocumentParser: NSObject {
         }
         if update(testSpec: &testSpec, with: tableParser) {
             testSpecs.append(testSpec)
+            tableParser.parseTableFinished()
         }
         return testSpecs
     }

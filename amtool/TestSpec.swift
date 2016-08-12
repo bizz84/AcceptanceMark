@@ -15,6 +15,25 @@ struct TestSpec {
         case int
         case float
         case string
+        case unknown
+        
+        init?(type: String) {
+            if type == "Bool" {
+                self = .bool
+            }
+            else if type == "Int" {
+                self = .int
+            }
+            else if type == "Float" {
+                self = .float
+            }
+            else if type == "String" {
+                self = .string
+            }
+            else {
+                return nil
+            }
+        }
     }
     
     struct Variable {
@@ -27,8 +46,8 @@ struct TestSpec {
         let outputs: [ Any ]
     }
     
-    var inputs: [ Variable ] = []
-    var outputs: [ Variable ] = []
+    var inputVars: [ Variable ] = []
+    var outputVars: [ Variable ] = []
     
     var tests: [ TestData ] = []
 }

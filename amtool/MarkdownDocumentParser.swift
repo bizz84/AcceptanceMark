@@ -44,8 +44,10 @@ enum MarkdownLineType {
 }
 
 class MarkdownDocumentParser: NSObject {
+    
+    let tableParser = MarkdownTableParser()
 
-    class func parse(fileContents: String, inputFilePath: String) -> MarkdownParseResult {
+    func parse(fileContents: String, inputFilePath: String) -> MarkdownParseResult {
         
         let lines = fileContents.lines.map {
             return ($0 as NSString).trimmingCharacters(in: CharacterSet.whitespaces)
@@ -63,7 +65,7 @@ class MarkdownDocumentParser: NSObject {
      * - Beginning of a TestSpec is marked by a heading line (one or more # characters)
      * - End of a TestSpec is marked by a new heading line, or end of file
      */
-    class func parse(lines: [String], inputFilePath: String) -> [TestSpec] {
+    func parse(lines: [String], inputFilePath: String) -> [TestSpec] {
         
         var testSpec = TestSpec()
 
@@ -77,7 +79,8 @@ class MarkdownDocumentParser: NSObject {
                 testSpec.title = parseHeading(line: line)
                 print(line)
             case .table:
-                print(line)
+                let tableState = tableParser.parseTable(line: line)
+                print("\(tableState)")
             case .other:
                 break
             }
@@ -86,9 +89,29 @@ class MarkdownDocumentParser: NSObject {
         return [ testSpec ]
     }
     
-    class func parseHeading(line: String) -> String {
+    func parseHeading(line: String) -> String {
         // Trim all non alphanumeric characters
         return (line as NSString).trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+    }
+    
+    func parseTable(line: String) {
+        var components = (line as NSString).components(separatedBy: "|").map {
+            return ($0 as NSString).trimmingCharacters(in: CharacterSet.whitespaces)
+        }
+        components.removeFirst()
+        components.removeLast()
+        var inputs = []
+        var outputs = []
+        if let ioSeparatorIndex = components.index(of: "") {
+            // [ i, |, o ]. separator = 1
+            inputs = Array(components.dropLast(components.count - ioSeparatorIndex))
+            outputs = Array(components.dropFirst(ioSeparatorIndex + 1))
+        }
+        else {
+            outputs = components
+        }
+        
+        print("INPUTS: \(inputs), OUTPUTS: \(outputs)")
     }
 }
 

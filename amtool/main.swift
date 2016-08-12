@@ -30,5 +30,6 @@ guard let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
     exit(0)
 }
 
-let result = MarkdownDocumentParser.parse(fileContents: string, inputFilePath: inputFilePath)
+let parser = MarkdownDocumentParser()
+let result = parser.parse(fileContents: string, inputFilePath: inputFilePath)
 print(result.testSpecs)

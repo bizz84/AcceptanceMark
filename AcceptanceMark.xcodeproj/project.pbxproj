@@ -16,6 +16,7 @@
 		6541DFCA1D5CBB8E00879766 /* CMDocumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6541DFC91D5CBB8E00879766 /* CMDocumentParser.swift */; };
 		6541DFCC1D5CBD8300879766 /* MarkdownDocumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6541DFCB1D5CBD8300879766 /* MarkdownDocumentParser.swift */; };
 		6541DFCE1D5CBFFF00879766 /* TestSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6541DFCD1D5CBFFF00879766 /* TestSpec.swift */; };
+		6553E8D81D5DCB79004EE0FC /* MarkdownTableParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6553E8D71D5DCB79004EE0FC /* MarkdownTableParser.swift */; };
 		65BCCFEA1D59E7E30062E238 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BCCFE91D59E7E30062E238 /* main.swift */; };
 		65C051C81D58ABAD0008892C /* AcceptanceMark.h in Headers */ = {isa = PBXBuildFile; fileRef = 65C051C61D58ABAD0008892C /* AcceptanceMark.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65C051DC1D58AC0A0008892C /* ImageTests_ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C051DA1D58AC0A0008892C /* ImageTests_ImageLoading.swift */; };
@@ -58,6 +59,7 @@
 		6541DFC91D5CBB8E00879766 /* CMDocumentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMDocumentParser.swift; sourceTree = "<group>"; };
 		6541DFCB1D5CBD8300879766 /* MarkdownDocumentParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownDocumentParser.swift; sourceTree = "<group>"; };
 		6541DFCD1D5CBFFF00879766 /* TestSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestSpec.swift; sourceTree = "<group>"; };
+		6553E8D71D5DCB79004EE0FC /* MarkdownTableParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownTableParser.swift; sourceTree = "<group>"; };
 		65BCCFE71D59E7E30062E238 /* amtool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = amtool; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BCCFE91D59E7E30062E238 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		65BCCFEE1D5A29340062E238 /* amtool-spec.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "amtool-spec.md"; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				6541DFC71D5C949400879766 /* Arguments.swift */,
 				6541DFCB1D5CBD8300879766 /* MarkdownDocumentParser.swift */,
+				6553E8D71D5DCB79004EE0FC /* MarkdownTableParser.swift */,
 				6541DFCD1D5CBFFF00879766 /* TestSpec.swift */,
 				6541DFC91D5CBB8E00879766 /* CMDocumentParser.swift */,
 				65BCCFE91D59E7E30062E238 /* main.swift */,
@@ -439,6 +442,7 @@
 				6541DFCA1D5CBB8E00879766 /* CMDocumentParser.swift in Sources */,
 				6541DFCE1D5CBFFF00879766 /* TestSpec.swift in Sources */,
 				6541DFC21D5C89AD00879766 /* sample.md in Sources */,
+				6553E8D81D5DCB79004EE0FC /* MarkdownTableParser.swift in Sources */,
 				65BCCFEA1D59E7E30062E238 /* main.swift in Sources */,
 				6541DFCC1D5CBD8300879766 /* MarkdownDocumentParser.swift in Sources */,
 			);

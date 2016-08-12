@@ -10,12 +10,11 @@ struct TestSpec {
     var fileName: String = ""
     var title: String = ""
     
-    enum VariableType {
-        case bool
-        case int
-        case float
-        case string
-        case unknown
+    enum VariableType: String {
+        case bool = "Bool"
+        case int = "Int"
+        case float = "Float"
+        case string = "String"
         
         init?(type: String) {
             if type == "Bool" {
@@ -36,14 +35,20 @@ struct TestSpec {
         }
     }
     
-    struct Variable {
+    struct Variable: CustomDebugStringConvertible {
         let name: String
         let type: VariableType
+        var debugDescription: String {
+            return "\(name): \(type.rawValue)"
+        }
     }
     
-    struct TestData {
-        let inputs: [ Any ]
-        let outputs: [ Any ]
+    struct TestData: CustomDebugStringConvertible {
+        let inputs: [ String ] // Should be Any?
+        let outputs: [ String ] // Should be Any?
+        var debugDescription: String {
+            return "\ninputs: \(inputs), outputs: \(outputs)"
+        }
     }
     
     var inputVars: [ Variable ] = []
@@ -55,6 +60,6 @@ struct TestSpec {
 extension TestSpec: CustomDebugStringConvertible {
     
     var debugDescription: String {
-        return "fileName: \(fileName)\ntitle: \(title)\n"
+        return "fileName: \(fileName)\ntitle: \(title)\nI: \(inputVars), O: \(outputVars)\ntests:\(tests)\n"
     }
 }

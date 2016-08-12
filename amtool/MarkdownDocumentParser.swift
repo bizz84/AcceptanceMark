@@ -67,51 +67,51 @@ class MarkdownDocumentParser: NSObject {
      */
     func parse(lines: [String], inputFilePath: String) -> [TestSpec] {
         
-        var testSpec = TestSpec()
-
         let pathComponents = (inputFilePath as NSString).components(separatedBy: "/")
-        testSpec.fileName = pathComponents.last ?? ""
+        let fileName = pathComponents.last ?? ""
         
+        var testSpecs: [TestSpec] = []
+        
+        var testSpec = TestSpec()
+        testSpec.fileName = fileName
         
         for line in lines {
             switch MarkdownLineType(line: line) {
             case .heading:
+                if update(testSpec: &testSpec, with: tableParser) {
+                    testSpecs.append(testSpec)
+                }
+            
+                // new test spec
+                testSpec = TestSpec()
                 testSpec.title = parseHeading(line: line)
-                print(line)
             case .table:
-                let tableState = tableParser.parseTable(line: line)
-                print("\(tableState)")
+                let _ = tableParser.parseTable(line: line)
+                //print("\(tableState)")
             case .other:
                 break
             }
         }
-        // Split filename
-        return [ testSpec ]
+        if update(testSpec: &testSpec, with: tableParser) {
+            testSpecs.append(testSpec)
+        }
+        return testSpecs
+    }
+    
+    func update(testSpec: inout TestSpec, with tableParser: MarkdownTableParser) -> Bool {
+        
+        if tableParser.hasValidData {
+            testSpec.inputVars = tableParser.inputVars
+            testSpec.outputVars = tableParser.outputVars
+            testSpec.tests = tableParser.testsData
+            return true
+        }
+        return false
     }
     
     func parseHeading(line: String) -> String {
         // Trim all non alphanumeric characters
         return (line as NSString).trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-    }
-    
-    func parseTable(line: String) {
-        var components = (line as NSString).components(separatedBy: "|").map {
-            return ($0 as NSString).trimmingCharacters(in: CharacterSet.whitespaces)
-        }
-        components.removeFirst()
-        components.removeLast()
-        var inputs = []
-        var outputs = []
-        if let ioSeparatorIndex = components.index(of: "") {
-            // [ i, |, o ]. separator = 1
-            inputs = Array(components.dropLast(components.count - ioSeparatorIndex))
-            outputs = Array(components.dropFirst(ioSeparatorIndex + 1))
-        }
-        else {
-            outputs = components
-        }
-        
-        print("INPUTS: \(inputs), OUTPUTS: \(outputs)")
     }
 }
 

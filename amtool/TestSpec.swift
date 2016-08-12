@@ -9,6 +9,18 @@
 struct TestSpec {
     var fileName: String = ""
     var title: String = ""
+    var namespace: String {
+        return (fileName as NSString)
+            .replacingOccurrences(of: ".md", with: "")
+            .replacingOccurrences(of: ".", with: "_")
+            .replacingOccurrences(of: " ", with: "_")
+    }
+    var testName: String {
+        return (title as NSString).replacingOccurrences(of: " ", with: "")
+    }
+    var sourceFileName: String {
+        return "\(namespace)_\(testName).swift"
+    }
     
     enum VariableType: String {
         case bool = "Bool"

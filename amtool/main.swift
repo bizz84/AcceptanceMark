@@ -32,4 +32,8 @@ guard let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue)
 
 let parser = MarkdownDocumentParser()
 let result = parser.parse(fileContents: string, inputFilePath: inputFilePath)
-print(result.testSpecs)
+
+//print(result.testSpecs)
+
+let outputDir = (inputFilePath as NSString).deletingLastPathComponent
+TestGenerator.generateTests(testSpecs: result.testSpecs, outputDir: outputDir)

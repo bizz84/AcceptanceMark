@@ -16,6 +16,7 @@ Given an acceptance test file named `acceptancemark/image-tests.md` with the fol
 | available.png || true         |
 | missing.png   || false        |
 ```
+_NOTE: The double-pipe syntax (`||`) is used as a delimiter between inputs and outputs. All test sets should have **exactly one** delimiter._
 
 Running the command `amtool --input-dir acceptancemark` will generate a test file named `acceptancemark/ImageTests_ImageLoading.swift`, defined as:
 

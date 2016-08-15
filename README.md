@@ -23,7 +23,7 @@ AcceptanceMark is the ideal tool to write Fitnesse-style acceptance tests that i
 * Write test runners to evaluate the system under test with the given inputs.
 * Run the chosen test target (Unit Tests or UI Tests both supported) and get a test report.
 
-### How does this work?
+## How does this work?
 
 Write your own test sets, like so:
 
@@ -37,8 +37,6 @@ image-tests.md
 | available.png || true         |
 | missing.png   || false        |
 ```
-
-_NOTE: The double-pipe syntax (`||`) is used as a delimiter between inputs and outputs. All test sets should have **exactly one** delimiter._
 
 Run `amtool` as an XCode pre-compilation phase, which generates all the required test harness:
 
@@ -74,11 +72,9 @@ protocol ImageTests_ImageLoadingTestRunnable {
     func run(input: ImageTests_ImageLoadingInput) throws -> ImageTests_ImageLoadingOutput
 }
 
-
 class ImageTests_ImageLoadingTests: XCTestCase {
     
     var testRunner: ImageTests_ImageLoadingTestRunnable!
-    
     
     override func setUp() {
         // MARK: Implement the ImageTests_ImageLoadingTestRunner() class!

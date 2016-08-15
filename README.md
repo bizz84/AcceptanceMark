@@ -66,17 +66,19 @@ struct ImageTests_ImageLoadingInput {
     let name: String
 }
 
-struct ImageTests_ImageLoadingResult: Equatable {
+struct ImageTests_ImageLoadingOutput: Equatable {
     let loaded: Bool
 }
 
 protocol ImageTests_ImageLoadingTestRunnable {
-    func run(input: ImageTests_ImageLoadingInput) throws -> ImageTests_ImageLoadingResult
+    func run(input: ImageTests_ImageLoadingInput) throws -> ImageTests_ImageLoadingOutput
 }
+
 
 class ImageTests_ImageLoadingTests: XCTestCase {
     
     var testRunner: ImageTests_ImageLoadingTestRunnable!
+    
     
     override func setUp() {
         // MARK: Implement the ImageTests_ImageLoadingTestRunner() class!
@@ -86,7 +88,7 @@ class ImageTests_ImageLoadingTests: XCTestCase {
     func testImageLoading_0() {
         
         let input = ImageTests_ImageLoadingInput(name: "available.png")
-        let expected = ImageTests_ImageLoadingResult(loaded: true)
+        let expected = ImageTests_ImageLoadingOutput(loaded: true)
         let result = try! testRunner.run(input: input)
         XCTAssertEqual(expected, result)
     }
@@ -94,13 +96,13 @@ class ImageTests_ImageLoadingTests: XCTestCase {
     func testImageLoading_1() {
         
         let input = ImageTests_ImageLoadingInput(name: "missing.png")
-        let expected = ImageTests_ImageLoadingResult(loaded: false)
+        let expected = ImageTests_ImageLoadingOutput(loaded: false)
         let result = try! testRunner.run(input: input)
         XCTAssertEqual(expected, result)
     }
 }
 
-func == (lhs: ImageTests_ImageLoadingResult, rhs: ImageTests_ImageLoadingResult) -> Bool {
+func == (lhs: ImageTests_ImageLoadingOutput, rhs: ImageTests_ImageLoadingOutput) -> Bool {
     return lhs.loaded == rhs.loaded
 }
 ```

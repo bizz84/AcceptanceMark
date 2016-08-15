@@ -13,12 +13,19 @@ class TestGenerator: NSObject {
     class func generateTests(testSpecs: [TestSpec], outputDir: String) {
         
         for testSpec in testSpecs {
-            let source = generateTestsSource(testSpec: testSpec, outputDir: outputDir)
-            print("\(source)")
+            let source = generateTestsSource(testSpec: testSpec)
+            let path = "\(outputDir)/\(testSpec.sourceFileName)"
+            do {
+                try (source as NSString).write(toFile: path, atomically: true, encoding: String.Encoding.utf8.rawValue)
+                print("Exported: \(path)")
+            }
+            catch {
+                print("Failed writing file: \(path)")
+            }
         }
     }
     
-    class func generateTestsSource(testSpec: TestSpec, outputDir: String) -> String {
+    class func generateTestsSource(testSpec: TestSpec) -> String {
         
         // Header
         var source: String = ""
@@ -57,7 +64,7 @@ class TestGenerator: NSObject {
         
         let outputStructName = "\(testClassIdentifier)Output"
         source.append(
-            "struct \(outputStructName) {\n" +
+            "struct \(outputStructName): Equatable {\n" +
                 testOutputs +
             "}\n\n")
 
@@ -97,8 +104,18 @@ class TestGenerator: NSObject {
             "\t}\n" +
             "\n" +
             tests +
+            "}\n\n"
+        )
+
+        let equalityChecks = testSpec.outputVars.map { "\t\tlhs.\($0.name) == rhs.\($0.name)" }
+        let equalityChecksString = equalityChecks.joined(separator: "&&\n")
+        source.append(
+            "func == (lhs: \(outputStructName), rhs: \(outputStructName)) -> Bool {\n" +
+            "\treturn\n" +
+            "\(equalityChecksString)\n" +
             "}\n"
         )
+        
         return source
     }
 }

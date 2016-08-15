@@ -13,12 +13,12 @@ class TestGenerator: NSObject {
     class func generateTests(testSpecs: [TestSpec], outputDir: String) {
         
         for testSpec in testSpecs {
-            generateTests(testSpec: testSpec, outputDir: outputDir)
+            let source = generateTestsSource(testSpec: testSpec, outputDir: outputDir)
+            print("\(source)")
         }
-        
     }
     
-    class func generateTests(testSpec: TestSpec, outputDir: String) {
+    class func generateTestsSource(testSpec: TestSpec, outputDir: String) -> String {
         
         // Header
         var source: String = ""
@@ -67,7 +67,23 @@ class TestGenerator: NSObject {
             "\tfunc run(input: \(inputStructName)) throws -> \(outputStructName)\n" +
             "}\n")
 
-        // TODO: All tests
+        // All tests
+        var tests: String = ""
+        var testIndex = 0
+        for test in testSpec.tests {
+            let inputParametersList = testSpec.inputParametersList(for: test)
+            let outputParametersList = testSpec.outputParametersList(for: test)
+            
+            tests.append(
+                "\tfunc test\(testSpec.testName)_\(testIndex)() {\n" +
+                "\t\tlet input = \(inputStructName)(\(inputParametersList))\n" +
+                "\t\tlet expected = \(outputStructName)(\(outputParametersList))\n" +
+                "\t\tlet result = try! testRunner.run(input: input)\n" +
+                "\t\tXCTAssertEqual(expected, result)\n" +
+                "\t}\n\n"
+            )
+            testIndex += 1
+        }
         
         // XCTestCase class
         source.append(
@@ -79,9 +95,10 @@ class TestGenerator: NSObject {
             "\t\t// MARK: Implement the \(testClassIdentifier)TestRunner() class!\n" +
             "\t\ttestRunner = \(testClassIdentifier)Runner()\n" +
             "\t}\n" +
+            "\n" +
+            tests +
             "}\n"
         )
-        
-        print("\(source)")
+        return source
     }
 }

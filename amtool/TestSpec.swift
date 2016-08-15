@@ -9,18 +9,6 @@
 struct TestSpec {
     var fileName: String = ""
     var title: String = ""
-    var namespace: String {
-        return (fileName as NSString)
-            .replacingOccurrences(of: ".md", with: "")
-            .replacingOccurrences(of: ".", with: "_")
-            .replacingOccurrences(of: " ", with: "_")
-    }
-    var testName: String {
-        return (title as NSString).replacingOccurrences(of: " ", with: "")
-    }
-    var sourceFileName: String {
-        return "\(namespace)_\(testName).swift"
-    }
     
     enum VariableType: String {
         case bool = "Bool"
@@ -74,4 +62,43 @@ extension TestSpec: CustomDebugStringConvertible {
     var debugDescription: String {
         return "\n  fileName: \(fileName)\n     title: \(title)\n  header I: \(inputVars), O: \(outputVars)\n     tests:\(tests)\n"
     }
+}
+
+extension TestSpec {
+ 
+    var namespace: String {
+        return (fileName as NSString)
+            .replacingOccurrences(of: ".md", with: "")
+            .replacingOccurrences(of: ".", with: "_")
+            .replacingOccurrences(of: " ", with: "_")
+    }
+    var testName: String {
+        return (title as NSString).replacingOccurrences(of: " ", with: "")
+    }
+    var sourceFileName: String {
+        return "\(namespace)_\(testName).swift"
+    }
+    
+    func inputParametersList(for test:TestData) -> String {
+        return parameterList(variables: inputVars, values: test.inputs)
+    }
+    func outputParametersList(for test:TestData) -> String {
+        return parameterList(variables: outputVars, values: test.outputs)
+    }
+    
+    func parameterList(variables: [Variable], values: [String]) -> String {
+        
+        var index = 0
+        var params: [String] = []
+        for variable in variables {
+            let value = values[index]
+            // TODO: formatting checks
+            let valueFormatted = variable.type == .string ? "\"" + value + "\"" : value
+            params.append("\(variable.name): \(valueFormatted)")
+            
+            index += 1
+        }
+        return params.joined(separator: ", ")
+    }
+
 }

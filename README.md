@@ -129,7 +129,7 @@ class ImageTests_ImageLoadingTestRunner: ImageTests_ImageLoadingTestRunnable {
 ## FAQ
 
 * _**Q**: I want to be able to have more than one table for each `.md` file. Is this possible?_
-* **A**: Yes, as long as the file is structured as **Heading**, **Table**, **Heading**, **Table**, **...**, **AcceptanceMark** will generate multiple swift test files by using a `<filename>_<heading>.swift` naming convention. This way, each table gets its own swift classes all in one file. Note that **heading names should be unique per-file**. Whitespaces and punctuation will be stripped from headings.
+* **A**: Yes, as long as the file is structured as [ **Heading**, **Table**, **Heading**, **Table**, **...** ], **AcceptanceMark** will generate multiple swift test files named `<filename>_<heading>.swift`. This way, each test set gets its own swift classes all in one file. Note that **heading names should be unique per-file**. Whitespaces and punctuation will be stripped from headings.
 
 * _**Q**: I want to preload application data/state for each test in a table (this is done with builders in Fitnesse). Can I do that?_
 * **A**: This is in the roadmap. While the specification for this may change, one possible way of doing this is by allowing more than one table for each Heading, with the convention that the **last** table represents the input/output set, while all previous tables represent data to be preloaded.
@@ -158,7 +158,13 @@ Until this is implemented, all preloading can be done directly in the test runne
 
 AcceptanceMark includes `amtool`, a command line tool that needs to run as a pre-compilation step for the desired project Unit Test or UI Test targets.
 
-Xcode 8 is required as `amtool` is written in Swift 3 and generates Swift 3 test code. At the time of writing, support for generation of Swift 2.x test code is not planned.
+Xcode 8 is required as `amtool` is written in Swift 3 and generates Swift 3 test code.
+
+In the future, more output languages could be added/supported:
+
+* Objective-C
+* Swift 2.x
+* Java (for Android)
 
 `amtool` will likely be distributed with the Swift Package Manager.
   

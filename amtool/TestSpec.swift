@@ -6,6 +6,8 @@
 //  Copyright © 2016 musevisions. All rights reserved.
 //
 
+import Foundation
+
 struct TestSpec {
     var fileName: String = ""
     var title: String = ""

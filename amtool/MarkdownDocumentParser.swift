@@ -6,6 +6,8 @@
 //  Copyright © 2016 musevisions. All rights reserved.
 //
 
+import Foundation
+
 extension String {
     var lines:[String] {
         var result:[String] = []

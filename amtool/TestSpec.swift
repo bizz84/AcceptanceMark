@@ -11,6 +11,7 @@ import Foundation
 struct TestSpec {
     var fileName: String = ""
     var title: String = ""
+    var testLines: [String] = []
     
     enum VariableType: String {
         case bool = "Bool"

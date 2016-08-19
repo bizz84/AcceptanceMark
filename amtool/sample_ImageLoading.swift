@@ -3,6 +3,13 @@
  * input file: sample.md
  * generated file: sample_ImageLoading.swift
  *
+ * -- Test Specification -- 
+ *
+ * ## Image Loading
+ * | name:String   || loaded:Bool  |
+ * | ------------- || ------------ |
+ * | available.png || true         |
+ * | missing.png   || false        |
  */
 import XCTest
 import AcceptanceMark

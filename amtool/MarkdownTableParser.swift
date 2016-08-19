@@ -41,6 +41,9 @@ class MarkdownTableParser: NSObject {
                 self.inputVars = inputVars
                 self.outputVars = outputVars
             }
+            if case .error(let message) = state {
+                print("\(message)")
+            }
             
         case .header(_, _):
             state = .separator
@@ -51,6 +54,9 @@ class MarkdownTableParser: NSObject {
             state = parseContent(line: line)
             if case .content(let testData) = state {
                 testsData.append(testData)
+            }
+            if case .error(let message) = state {
+                print("\(message)")
             }
 
         case .error(_):
@@ -74,12 +80,14 @@ class MarkdownTableParser: NSObject {
         
         let (inputs, outputs) = getInputsOutputs(line: line)
         
-        let inputVars = parseTableHeaders(strings: inputs)
-        let outputVars = parseTableHeaders(strings: outputs)
+        guard let inputVars = parseTableHeaders(strings: inputs),
+            let outputVars = parseTableHeaders(strings: outputs) else {
+            return .error(message: "error parsing line:\n\(line)")
+        }
         if inputVars.count == inputs.count && outputVars.count == outputs.count {
             return .header(inputVars: inputVars, outputVars: outputVars)
         }
-        return .error(message: "error parsing line \(line). Input vars: \(inputVars), output vars: \(outputVars)")
+        return .error(message: "error parsing line:\n\(line)\nInput vars: \(inputVars), output vars: \(outputVars)")
     }
 
     private func getInputsOutputs(line: String) -> ([String], [String]) {
@@ -100,7 +108,7 @@ class MarkdownTableParser: NSObject {
     }
     
     
-    func parseTableHeaders(strings: [String]) -> [TestSpec.Variable] {
+    func parseTableHeaders(strings: [String]) -> [TestSpec.Variable]? {
         var variables: [TestSpec.Variable] = []
         
         for string in strings {
@@ -112,6 +120,14 @@ class MarkdownTableParser: NSObject {
                 if let type = TestSpec.VariableType(type: components.last!) {
                     variables.append(TestSpec.Variable(name: components.first!, type: type))
                 }
+                else {
+                    print("\(components.first!): Unrecognized variable type: \"\(components.last!)\".\nOnly Bool, Int, Float, String are supported.")
+                    return nil
+                }
+            }
+            else {
+                print("invalid table header format: \"\(strings)\"")
+                return nil
             }
         }
         return variables

@@ -77,36 +77,40 @@ class MarkdownDocumentParser: NSObject {
         var testSpec = TestSpec()
         testSpec.fileName = fileName
         
+        var testSpecLines: [String] = []
+        
         for line in lines {
             switch MarkdownLineType(line: line) {
             case .heading:
-                if update(testSpec: &testSpec, with: tableParser) {
+                if update(testSpec: &testSpec, with: tableParser, testLines: testSpecLines) {
                     testSpecs.append(testSpec)
                     tableParser.parseTableFinished()
                 }
             
                 // new test spec
                 testSpec.title = parseHeading(line: line)
+                testSpecLines = [line]
             case .table:
                 let _ = tableParser.parseTable(line: line)
-                //print("\(tableState)")
+                testSpecLines.append(line)
             case .other:
                 break
             }
         }
-        if update(testSpec: &testSpec, with: tableParser) {
+        if update(testSpec: &testSpec, with: tableParser, testLines: testSpecLines) {
             testSpecs.append(testSpec)
             tableParser.parseTableFinished()
         }
         return testSpecs
     }
     
-    func update(testSpec: inout TestSpec, with tableParser: MarkdownTableParser) -> Bool {
+    func update(testSpec: inout TestSpec, with tableParser: MarkdownTableParser, testLines: [String]) -> Bool {
         
         if tableParser.hasValidData {
             testSpec.inputVars = tableParser.inputVars
             testSpec.outputVars = tableParser.outputVars
             testSpec.tests = tableParser.testsData
+            testSpec.testLines = testLines
             return true
         }
         return false

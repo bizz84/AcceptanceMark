@@ -35,7 +35,14 @@ class TestGenerator: NSObject {
             " * input file: \(testSpec.fileName)\n" +
             " * generated file: \(testSpec.sourceFileName)\n" +
             " *\n" +
-            " */\n") // TODO: Add input test.md
+            " * -- Test Specification -- \n" +
+            " *\n")
+        
+        for line in testSpec.testLines {
+            source.append(" * \(line)\n")
+        }
+        
+        source.append(" */\n") // TODO: Add input test.md
 
         // Imports
         source.append(

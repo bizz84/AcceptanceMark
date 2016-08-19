@@ -8,6 +8,7 @@
 
 import Cocoa
 
+
 enum MarkdownTableParserState {
     case outside
     case header(inputVars: [TestSpec.Variable], outputVars: [TestSpec.Variable])
@@ -91,8 +92,10 @@ class MarkdownTableParser: NSObject {
     }
 
     private func getInputsOutputs(line: String) -> ([String], [String]) {
-        
+                
         let values = components(for: line)
+        
+        print("\(values)")
         
         var inputs: [String] = []
         var outputs: [String] = []
@@ -114,11 +117,14 @@ class MarkdownTableParser: NSObject {
         for string in strings {
             let components = string.components(separatedBy: ":")
             if components.count == 1 {
-                variables.append(TestSpec.Variable(name: components.first!, type: .string))
+                let name = components.first!.filteredAlphanumericCharacters()
+                variables.append(TestSpec.Variable(name: name, type: .string))
             }
             else if components.count == 2 {
-                if let type = TestSpec.VariableType(type: components.last!) {
-                    variables.append(TestSpec.Variable(name: components.first!, type: type))
+                let name = components.first!.filteredAlphanumericCharacters()
+                let type = components.last!.filteredAlphanumericCharacters()
+                if let type = TestSpec.VariableType(type: type) {
+                    variables.append(TestSpec.Variable(name: name, type: type))
                 }
                 else {
                     print("\(components.first!): Unrecognized variable type: \"\(components.last!)\".\nOnly Bool, Int, Float, String are supported.")

@@ -117,8 +117,7 @@ class MarkdownDocumentParser: NSObject {
     }
     
     func parseHeading(line: String) -> String {
-        // Trim all non alphanumeric characters
-        return (line as NSString).trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        return line.trimmedNonAlphanumericCharacters()
     }
 }
 

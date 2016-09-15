@@ -75,7 +75,7 @@ class TestGenerator: NSObject {
             "//class \(testClassIdentifier)Runner : \(testClassIdentifier)Runnable {\n" +
             "//\n" +
             "//\tfunc run(input: \(inputStructName)) throws -> \(outputStructName) {\n" +
-            "//\t\t//return <\(outputStructName)>\n" +
+            "//\t\treturn \(outputStructName)(<#parameters#>)\n" +
             "//\t}\n" +
             "//}\n" +
             "\n"

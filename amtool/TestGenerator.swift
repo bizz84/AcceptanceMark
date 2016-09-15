@@ -8,16 +8,35 @@
 
 import Cocoa
 
+enum Language: String {
+    case swift3
+    case swift2
+    
+    init(value: String) {
+        let lowercaseValue = value.lowercased()
+        if lowercaseValue.contains("swift2") {
+            self = .swift2
+        }
+        else if lowercaseValue.contains("swift3") {
+            self = .swift3
+        }
+        else {
+            print("Failed detecting language: \(value). Defaulting to Swift 3")
+            self = .swift3
+        }
+    }
+}
+
 class TestGenerator: NSObject {
 
-    class func generateTests(testSpecs: [TestSpec], outputDir: String) {
+    class func generateTests(testSpecs: [TestSpec], outputDir: String, language: Language) {
         
         for testSpec in testSpecs {
-            let source = generateTestsSource(testSpec: testSpec)
+            let source = generateTestsSource(testSpec: testSpec, language: language)
             let path = "\(outputDir)/\(testSpec.sourceFileName)"
             do {
                 try (source as NSString).write(toFile: path, atomically: true, encoding: String.Encoding.utf8.rawValue)
-                print("Exported: \(path)")
+                print("Exported \(language.rawValue) code: \(path)")
             }
             catch {
                 print("Failed writing file: \(path)")
@@ -25,7 +44,7 @@ class TestGenerator: NSObject {
         }
     }
     
-    class func generateTestsSource(testSpec: TestSpec) -> String {
+    class func generateTestsSource(testSpec: TestSpec, language: Language) -> String {
         
         // Header
         var source: String = ""
@@ -87,11 +106,12 @@ class TestGenerator: NSObject {
             let inputParametersList = testSpec.inputParametersList(for: test)
             let outputParametersList = testSpec.outputParametersList(for: test)
             
+            let testRunnerInputParameter = language == .swift3 ? "input: ": ""
             tests.append(
                 "\tfunc test\(testSpec.testName)_\(testIndex)() {\n" +
                 "\t\tlet input = \(inputStructName)(\(inputParametersList))\n" +
                 "\t\tlet expected = \(outputStructName)(\(outputParametersList))\n" +
-                "\t\tlet result = try! testRunner.run(input: input)\n" +
+                "\t\tlet result = try! testRunner.run(\(testRunnerInputParameter)input)\n" +
                 "\t\tXCTAssertEqual(expected, result)\n" +
                 "\t}\n\n"
             )

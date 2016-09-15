@@ -11,7 +11,7 @@ import Foundation
 let arguments = Arguments(arguments: ProcessInfo.processInfo.arguments)
 
 guard let inputFilePath = arguments.inputFilePath else {
-    print("missing input file. Syntax:\namtool -i <input-file.md>")
+    print("missing input file. Syntax:\namtool -i <input-file.md> [-l swift2|swift3]")
     exit(0)
 }
 
@@ -36,4 +36,4 @@ let result = parser.parse(fileContents: string, inputFilePath: inputFilePath)
 //print(result.testSpecs)
 
 let outputDir = (inputFilePath as NSString).deletingLastPathComponent
-TestGenerator.generateTests(testSpecs: result.testSpecs, outputDir: outputDir)
+TestGenerator.generateTests(testSpecs: result.testSpecs, outputDir: outputDir, language: arguments.language)

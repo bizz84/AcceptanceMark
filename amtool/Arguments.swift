@@ -12,13 +12,15 @@ enum ArgumentType {
     case value(argument: String)
     case unknown(argument: String)
     case inputFile
+    case language
     
     init(argument: String) {
         
         switch argument {
         case "-i":
             self = .inputFile
-            
+        case "-l":
+            self = .language
         default:
             self = argument.characters.first == "-" ? .unknown(argument: argument) : .value(argument: argument)
         }
@@ -28,6 +30,7 @@ enum ArgumentType {
 struct Arguments {
     
     let inputFile: String?
+    var language: Language = .swift3
     
     var inputFilePath: String? {
         guard let inputFile = inputFile else {
@@ -52,6 +55,7 @@ struct Arguments {
     init(arguments: [String]) {
         
         var inputFile: String?
+        var language: Language = .swift3
         var previousArg: ArgumentType?
         for argument in arguments where argument.characters.count > 0 {
             
@@ -61,6 +65,8 @@ struct Arguments {
                 switch previousArg {
                 case .inputFile:
                     inputFile = valueArg
+                case .language:
+                    language = Language(value: valueArg)
                 default:
                     break
                 }
@@ -68,5 +74,6 @@ struct Arguments {
             previousArg = currentArg
         }
         self.inputFile = inputFile
+        self.language = language
     }
 }

@@ -114,7 +114,7 @@ class TestGenerator: NSObject {
         )
 
         let equalityChecks = testSpec.outputVars.map { "\t\tlhs.\($0.name) == rhs.\($0.name)" }
-        let equalityChecksString = equalityChecks.joined(separator: "&&\n")
+        let equalityChecksString = equalityChecks.joined(separator: " &&\n")
         source.append(
             "func == (lhs: \(outputStructName), rhs: \(outputStructName)) -> Bool {\n" +
             "\treturn\n" +

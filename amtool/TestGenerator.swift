@@ -46,6 +46,10 @@ class TestGenerator: NSObject {
     
     class func generateTestsSource(testSpec: TestSpec, language: Language) -> String {
         
+        let testClassIdentifier = "\(testSpec.namespace)_\(testSpec.testName)"
+        let inputStructName = "\(testClassIdentifier)Input"
+        let outputStructName = "\(testClassIdentifier)Output"
+
         // Header
         var source: String = ""
         source.append(
@@ -63,6 +67,20 @@ class TestGenerator: NSObject {
         
         source.append(" */\n") // TODO: Add input test.md
 
+        // Append sample runner code
+        source.append(
+            "\n" +
+            "//// Don't forget to create a test runner: \n" +
+            "//\n" +
+            "//class \(testClassIdentifier)Runner : \(testClassIdentifier)Runnable {\n" +
+            "//\n" +
+            "//\tfunc run(input: \(inputStructName)) throws -> \(outputStructName) {\n" +
+            "//\t\t//return <\(outputStructName)>\n" +
+            "//\t}\n" +
+            "//}\n" +
+            "\n"
+        )
+
         // Imports
         source.append(
             "import XCTest\n" +
@@ -74,8 +92,6 @@ class TestGenerator: NSObject {
             testInputs.append("\tlet \(inputVar.name): \(inputVar.type.rawValue)\n")
         }
         
-        let testClassIdentifier = "\(testSpec.namespace)_\(testSpec.testName)"
-        let inputStructName = "\(testClassIdentifier)Input"
         source.append(
             "struct \(inputStructName) {\n" +
             testInputs +
@@ -87,7 +103,6 @@ class TestGenerator: NSObject {
             testOutputs.append("\tlet \(outputVar.name): \(outputVar.type.rawValue)\n")
         }
         
-        let outputStructName = "\(testClassIdentifier)Output"
         source.append(
             "struct \(outputStructName): Equatable {\n" +
                 testOutputs +
@@ -140,19 +155,6 @@ class TestGenerator: NSObject {
             "\treturn\n" +
             "\(equalityChecksString)\n" +
             "}\n"
-        )
-        
-        // Append sample runner code
-        source.append(
-            "//\n" +
-            "//// You need to create a test runner. Sample runner: \n" +
-            "//class \(testClassIdentifier)Runner : \(testClassIdentifier)Runnable {\n" +
-            "//\n" +
-            "//\tfunc run(input: \(inputStructName)) throws -> \(outputStructName) {\n" +
-            "//\t\t//return <\(outputStructName)>\n" +
-            "//\t}\n" +
-            "//}\n" +
-            "//"
         )
         
         return source

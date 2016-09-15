@@ -47,7 +47,6 @@ class TestGenerator: NSObject {
         // Imports
         source.append(
             "import XCTest\n" +
-            "import AcceptanceMark\n" +
             "\n")
         
         // Input struct

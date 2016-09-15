@@ -1,0 +1,2 @@
+language: swift
+script: xcodebuild -project AcceptanceMark.xcodeproj -target amtool

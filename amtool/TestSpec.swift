@@ -73,7 +73,7 @@ extension TestSpec {
         return (fileName as NSString)
             .replacingOccurrences(of: ".md", with: "")
             .replacingOccurrences(of: ".", with: "_")
-            .replacingOccurrences(of: " ", with: "_")
+            .replacingOccurrences(of: " ", with: "_").filteredAlphanumericCharacters()
     }
     var testName: String {
         return (title as NSString).replacingOccurrences(of: " ", with: "")

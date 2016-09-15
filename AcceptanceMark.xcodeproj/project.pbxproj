@@ -22,9 +22,7 @@
 		65C051EA1D58AC330008892C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C051E81D58AC330008892C /* Main.storyboard */; };
 		65C051EC1D58AC330008892C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C051EB1D58AC330008892C /* Assets.xcassets */; };
 		65C051EF1D58AC330008892C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C051ED1D58AC330008892C /* LaunchScreen.storyboard */; };
-		65C60D151D61EA800075A7EF /* sample_ImageLoading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C60D141D61EA800075A7EF /* sample_ImageLoading.swift */; };
-		65C60D171D61EA950075A7EF /* sample_ImageLoadingTestRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C60D161D61EA950075A7EF /* sample_ImageLoadingTestRunner.swift */; };
-		65E31AFA1D8B17C300488065 /* sample.md in Sources */ = {isa = PBXBuildFile; fileRef = 65E31AF91D8B17C300488065 /* sample.md */; };
+		65E31AFD1D8B3BF100488065 /* ImageTests.md in Sources */ = {isa = PBXBuildFile; fileRef = 65E31AFB1D8B35DB00488065 /* ImageTests.md */; };
 		65FA5EFD1D58AD0000B39FA7 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FA5EFC1D58AD0000B39FA7 /* Error.swift */; };
 		65FA5EFE1D58AD5800B39FA7 /* AcceptanceMark.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65C051C31D58ABAD0008892C /* AcceptanceMark.framework */; };
 /* End PBXBuildFile section */
@@ -76,9 +74,6 @@
 		65C051EB1D58AC330008892C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65C051EE1D58AC330008892C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65C051F01D58AC330008892C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		65C60D141D61EA800075A7EF /* sample_ImageLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sample_ImageLoading.swift; path = amtool/sample_ImageLoading.swift; sourceTree = SOURCE_ROOT; };
-		65C60D161D61EA950075A7EF /* sample_ImageLoadingTestRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sample_ImageLoadingTestRunner.swift; sourceTree = "<group>"; };
-		65E31AF91D8B17C300488065 /* sample.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sample.md; sourceTree = "<group>"; };
 		65E31AFB1D8B35DB00488065 /* ImageTests.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ImageTests.md; sourceTree = "<group>"; };
 		65FA5EFC1D58AD0000B39FA7 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		A758C14CE7379AD0E3954562 /* libPods-amtool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-amtool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -189,10 +184,7 @@
 		65C051D31D58ABE80008892C /* AcceptanceMarkDemoTests */ = {
 			isa = PBXGroup;
 			children = (
-				65E31AF91D8B17C300488065 /* sample.md */,
 				65E31AFB1D8B35DB00488065 /* ImageTests.md */,
-				65C60D141D61EA800075A7EF /* sample_ImageLoading.swift */,
-				65C60D161D61EA950075A7EF /* sample_ImageLoadingTestRunner.swift */,
 				65C051DA1D58AC0A0008892C /* ImageTests_ImageLoading.swift */,
 				65C051DB1D58AC0A0008892C /* ImageTests_ImageLoadingTestRunner.swift */,
 				65C051D61D58ABE80008892C /* Info.plist */,
@@ -430,10 +422,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65E31AFD1D8B3BF100488065 /* ImageTests.md in Sources */,
 				65C051DD1D58AC0A0008892C /* ImageTests_ImageLoadingTestRunner.swift in Sources */,
-				65C60D151D61EA800075A7EF /* sample_ImageLoading.swift in Sources */,
-				65E31AFA1D8B17C300488065 /* sample.md in Sources */,
-				65C60D171D61EA950075A7EF /* sample_ImageLoadingTestRunner.swift in Sources */,
 				65C051DC1D58AC0A0008892C /* ImageTests_ImageLoading.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

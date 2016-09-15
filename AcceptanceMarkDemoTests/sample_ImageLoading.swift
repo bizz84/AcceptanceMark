@@ -11,8 +11,17 @@
  * | available.png || true         |
  * | missing.png   || false        |
  */
+
+//// Don't forget to create a test runner: 
+//
+//class sample_ImageLoadingRunner : sample_ImageLoadingRunnable {
+//
+//	func run(input: sample_ImageLoadingInput) throws -> sample_ImageLoadingOutput {
+//		return sample_ImageLoadingOutput(<#parameters#>)
+//	}
+//}
+
 import XCTest
-import AcceptanceMark
 
 struct sample_ImageLoadingInput {
 	let name: String

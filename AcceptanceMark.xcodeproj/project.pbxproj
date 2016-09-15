@@ -79,6 +79,7 @@
 		65C60D141D61EA800075A7EF /* sample_ImageLoading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = sample_ImageLoading.swift; path = amtool/sample_ImageLoading.swift; sourceTree = SOURCE_ROOT; };
 		65C60D161D61EA950075A7EF /* sample_ImageLoadingTestRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sample_ImageLoadingTestRunner.swift; sourceTree = "<group>"; };
 		65E31AF91D8B17C300488065 /* sample.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = sample.md; sourceTree = "<group>"; };
+		65E31AFB1D8B35DB00488065 /* ImageTests.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = ImageTests.md; sourceTree = "<group>"; };
 		65FA5EFC1D58AD0000B39FA7 /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		A758C14CE7379AD0E3954562 /* libPods-amtool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-amtool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D128B03E3CD2CA3711855BDB /* Pods-amtool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-amtool.release.xcconfig"; path = "Pods/Target Support Files/Pods-amtool/Pods-amtool.release.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				65E31AF91D8B17C300488065 /* sample.md */,
+				65E31AFB1D8B35DB00488065 /* ImageTests.md */,
 				65C60D141D61EA800075A7EF /* sample_ImageLoading.swift */,
 				65C60D161D61EA950075A7EF /* sample_ImageLoadingTestRunner.swift */,
 				65C051DA1D58AC0A0008892C /* ImageTests_ImageLoading.swift */,

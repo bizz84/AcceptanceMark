@@ -67,7 +67,7 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "/Users/andrea/dev/WORK/MuseVisions/github/AcceptanceMark/AcceptanceMarkDemoTests/sample.md"
+            argument = "/Users/andrea/dev/WORK/MuseVisions/github/AcceptanceMark/AcceptanceMarkDemoTests/ImageTests.md"
             isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>

@@ -1,3 +1,5 @@
 language: swift
 osx_image: xcode8
-script: xcodebuild -project AcceptanceMark.xcodeproj -target amtool
+xcode_project: AcceptanceMark.xcodeproj
+xcode_scheme: amtool
+#script: xcodebuild -project AcceptanceMark.xcodeproj -target amtool

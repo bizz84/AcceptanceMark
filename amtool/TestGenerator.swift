@@ -123,6 +123,19 @@ class TestGenerator: NSObject {
             "}\n"
         )
         
+        // Append sample runner code
+        source.append(
+            "//\n" +
+            "//// You need to create a test runner. Sample runner: \n" +
+            "//class \(testClassIdentifier)Runner : \(testClassIdentifier)Runnable {\n" +
+            "//\n" +
+            "//\tfunc run(input: \(inputStructName)) throws -> \(outputStructName) {\n" +
+            "//\t\t//return <\(outputStructName)>\n" +
+            "//\t}\n" +
+            "//}\n" +
+            "//"
+        )
+        
         return source
     }
 }

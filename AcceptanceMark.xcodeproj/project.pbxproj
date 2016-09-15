@@ -489,7 +489,6 @@
 		};
 		65BCCFED1D59E7E30062E238 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D128B03E3CD2CA3711855BDB /* Pods-amtool.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				DEVELOPMENT_TEAM = M54ZVB688G;

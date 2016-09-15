@@ -95,13 +95,31 @@ extension TestSpec {
         var params: [String] = []
         for variable in variables {
             let value = values[index]
-            // TODO: formatting checks
-            let valueFormatted = variable.type == .string ? "\"" + value + "\"" : value
-            params.append("\(variable.name): \(valueFormatted)")
+            let formatted = valueFormatted(type: variable.type, value: value)
+            params.append("\(variable.name): \(formatted)")
             
             index += 1
         }
         return params.joined(separator: ", ")
+    }
+    
+    func valueFormatted(type: VariableType, value: String) -> String {
+        
+        // TODO: formatting checks
+        switch type {
+        case .string: return "\"" + value + "\""
+        case .int: return value
+        case .float: return value
+        case .bool:
+            let lowercasedValue = value.lowercased()
+            if lowercasedValue == "true" || lowercasedValue == "yes" {
+                return "true"
+            }
+            if lowercasedValue == "false" || lowercasedValue == "no" {
+                return "false"
+            }
+            return value // This will generate a compile error and point out that the valued is not recognised
+        }
     }
 
 }

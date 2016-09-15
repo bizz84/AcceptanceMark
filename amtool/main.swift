@@ -8,7 +8,7 @@
 
 import Foundation
 
-let arguments = Arguments(arguments: Process.arguments)
+let arguments = Arguments(arguments: ProcessInfo.processInfo.arguments)
 
 guard let inputFilePath = arguments.inputFilePath else {
     print("missing input file. Syntax:\namtool -i <input-file.md>")

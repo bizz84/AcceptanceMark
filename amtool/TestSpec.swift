@@ -79,7 +79,7 @@ extension TestSpec {
         return (title as NSString).replacingOccurrences(of: " ", with: "")
     }
     var sourceFileName: String {
-        return "\(namespace)_\(testName).swift"
+        return "\(namespace)_\(testName)Tests.swift"
     }
     
     func inputParametersList(for test:TestData) -> String {

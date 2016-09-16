@@ -14,7 +14,7 @@
 
 //// Don't forget to create a test runner: 
 //
-//class ImageTests_ImageLoadingRunner : ImageTests_ImageLoadingRunnable {
+//class ImageTests_ImageLoadingRunner: ImageTests_ImageLoadingRunnable {
 //
 //	func run(input: ImageTests_ImageLoadingInput) throws -> ImageTests_ImageLoadingOutput {
 //		return ImageTests_ImageLoadingOutput(<#parameters#>)
@@ -39,7 +39,7 @@ class ImageTests_ImageLoadingTests: XCTestCase {
 	var testRunner: ImageTests_ImageLoadingRunnable!
 
 	override func setUp() {
-		// MARK: Implement the ImageTests_ImageLoadingTestRunner() class!
+		// MARK: Implement the ImageTests_ImageLoadingRunner() class!
 		testRunner = ImageTests_ImageLoadingRunner()
 	}
 

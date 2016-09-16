@@ -72,7 +72,7 @@ class TestGenerator: NSObject {
             "\n" +
             "//// Don't forget to create a test runner: \n" +
             "//\n" +
-            "//class \(testClassIdentifier)Runner : \(testClassIdentifier)Runnable {\n" +
+            "//class \(testClassIdentifier)Runner: \(testClassIdentifier)Runnable {\n" +
             "//\n" +
             "//\tfunc run(input: \(inputStructName)) throws -> \(outputStructName) {\n" +
             "//\t\treturn \(outputStructName)(<#parameters#>)\n" +
@@ -140,7 +140,7 @@ class TestGenerator: NSObject {
             "\tvar testRunner: \(testClassIdentifier)Runnable!\n" +
             "\n" +
             "\toverride func setUp() {\n" +
-            "\t\t// MARK: Implement the \(testClassIdentifier)TestRunner() class!\n" +
+            "\t\t// MARK: Implement the \(testClassIdentifier)Runner() class!\n" +
             "\t\ttestRunner = \(testClassIdentifier)Runner()\n" +
             "\t}\n" +
             "\n" +

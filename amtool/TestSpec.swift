@@ -115,7 +115,7 @@ extension TestSpec {
             if lowercasedValue == "true" || lowercasedValue == "yes" {
                 return "true"
             }
-            if lowercasedValue == "false" || lowercasedValue == "no" {
+            if lowercasedValue == "false" || lowercasedValue == "no" || lowercasedValue == "" {
                 return "false"
             }
             return value // This will generate a compile error and point out that the valued is not recognised

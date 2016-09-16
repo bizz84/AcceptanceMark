@@ -116,14 +116,14 @@ class TestGenerator: NSObject {
 
         // All tests
         var tests: String = ""
-        var testIndex = 0
+        var testIndex = 1
         for test in testSpec.tests {
             let inputParametersList = testSpec.inputParametersList(for: test)
             let outputParametersList = testSpec.outputParametersList(for: test)
             
             let testRunnerInputParameter = language == .swift3 ? "input: ": ""
             tests.append(
-                "\tfunc test\(testSpec.testName)_\(testIndex)() {\n" +
+                "\tfunc test\(testSpec.testName)_row\(testIndex)() {\n" +
                 "\t\tlet input = \(inputStructName)(\(inputParametersList))\n" +
                 "\t\tlet expected = \(outputStructName)(\(outputParametersList))\n" +
                 "\t\tlet result = try! testRunner.run(\(testRunnerInputParameter)input)\n" +

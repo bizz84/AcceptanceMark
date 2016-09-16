@@ -43,14 +43,14 @@ class ImageTests_ImageLoadingTests: XCTestCase {
 		testRunner = ImageTests_ImageLoadingRunner()
 	}
 
-	func testImageLoading_0() {
+	func testImageLoading_row1() {
 		let input = ImageTests_ImageLoadingInput(name: "available.png")
 		let expected = ImageTests_ImageLoadingOutput(loaded: true)
 		let result = try! testRunner.run(input: input)
 		XCTAssertEqual(expected, result)
 	}
 
-	func testImageLoading_1() {
+	func testImageLoading_row2() {
 		let input = ImageTests_ImageLoadingInput(name: "missing.png")
 		let expected = ImageTests_ImageLoadingOutput(loaded: false)
 		let result = try! testRunner.run(input: input)

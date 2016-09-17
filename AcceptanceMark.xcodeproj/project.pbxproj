@@ -19,12 +19,12 @@
 		65C051EA1D58AC330008892C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C051E81D58AC330008892C /* Main.storyboard */; };
 		65C051EC1D58AC330008892C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65C051EB1D58AC330008892C /* Assets.xcassets */; };
 		65C051EF1D58AC330008892C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65C051ED1D58AC330008892C /* LaunchScreen.storyboard */; };
-		65E31AFD1D8B3BF100488065 /* ImageTests.md in Sources */ = {isa = PBXBuildFile; fileRef = 65E31AFB1D8B35DB00488065 /* ImageTests.md */; };
-		65FFF95D1D8D2BF200E4BCF0 /* DateFormatting.md in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF95C1D8D2BF200E4BCF0 /* DateFormatting.md */; };
 		65FFF9611D8D2D4400E4BCF0 /* DateFormatting_DateFormattingRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF9601D8D2D4400E4BCF0 /* DateFormatting_DateFormattingRunner.swift */; };
 		65FFF9631D8D2DD800E4BCF0 /* DateFormatting_DateFormattingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF9621D8D2DD800E4BCF0 /* DateFormatting_DateFormattingTests.swift */; };
 		65FFF9671D8D9EA100E4BCF0 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF9641D8D9C5D00E4BCF0 /* DateFormatter.swift */; };
 		65FFF9681D8D9EA800E4BCF0 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF9641D8D9C5D00E4BCF0 /* DateFormatter.swift */; };
+		65FFF9691D8D9F6200E4BCF0 /* ImageTests_ImageLoadingRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C051DB1D58AC0A0008892C /* ImageTests_ImageLoadingRunner.swift */; };
+		65FFF96A1D8D9F6400E4BCF0 /* ImageTests_ImageLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF95A1D8C712800E4BCF0 /* ImageTests_ImageLoadingTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -356,10 +356,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65E31AFD1D8B3BF100488065 /* ImageTests.md in Sources */,
+				65FFF96A1D8D9F6400E4BCF0 /* ImageTests_ImageLoadingTests.swift in Sources */,
 				65FFF9631D8D2DD800E4BCF0 /* DateFormatting_DateFormattingTests.swift in Sources */,
+				65FFF9691D8D9F6200E4BCF0 /* ImageTests_ImageLoadingRunner.swift in Sources */,
 				65FFF9611D8D2D4400E4BCF0 /* DateFormatting_DateFormattingRunner.swift in Sources */,
-				65FFF95D1D8D2BF200E4BCF0 /* DateFormatting.md in Sources */,
 				65FFF9681D8D9EA800E4BCF0 /* DateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

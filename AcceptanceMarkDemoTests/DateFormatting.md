@@ -1,4 +1,6 @@
+
 ## Date Formatting
+
 | year:Int | month:Int | day:Int | hour:Int | minute:Int | second:Int | language | dateStyle    || localizedDate            |
 | ---------| --------- | ------- | -------- | ---------- | ---------- | -------- | --------- |---| ------------------------ |
 |     2016 |         9 |      16 |       17 |         30 |         15 | en       | short        || 9/16/16, 5:30 PM         |

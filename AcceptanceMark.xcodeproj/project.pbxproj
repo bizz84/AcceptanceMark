@@ -26,6 +26,8 @@
 		65FFF95D1D8D2BF200E4BCF0 /* DateFormatting.md in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF95C1D8D2BF200E4BCF0 /* DateFormatting.md */; };
 		65FFF9611D8D2D4400E4BCF0 /* DateFormatting_DateFormattingRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF9601D8D2D4400E4BCF0 /* DateFormatting_DateFormattingRunner.swift */; };
 		65FFF9631D8D2DD800E4BCF0 /* DateFormatting_DateFormattingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF9621D8D2DD800E4BCF0 /* DateFormatting_DateFormattingTests.swift */; };
+		65FFF9671D8D9EA100E4BCF0 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF9641D8D9C5D00E4BCF0 /* DateFormatter.swift */; };
+		65FFF9681D8D9EA800E4BCF0 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF9641D8D9C5D00E4BCF0 /* DateFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,7 @@
 		65FFF95C1D8D2BF200E4BCF0 /* DateFormatting.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = DateFormatting.md; sourceTree = "<group>"; };
 		65FFF9601D8D2D4400E4BCF0 /* DateFormatting_DateFormattingRunner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatting_DateFormattingRunner.swift; sourceTree = "<group>"; };
 		65FFF9621D8D2DD800E4BCF0 /* DateFormatting_DateFormattingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatting_DateFormattingTests.swift; sourceTree = "<group>"; };
+		65FFF9641D8D9C5D00E4BCF0 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		A758C14CE7379AD0E3954562 /* libPods-amtool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-amtool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D128B03E3CD2CA3711855BDB /* Pods-amtool.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-amtool.release.xcconfig"; path = "Pods/Target Support Files/Pods-amtool/Pods-amtool.release.xcconfig"; sourceTree = "<group>"; };
 		EF93B81C245EAE4A66E2804E /* Pods-amtool.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-amtool.debug.xcconfig"; path = "Pods/Target Support Files/Pods-amtool/Pods-amtool.debug.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 				65C051EB1D58AC330008892C /* Assets.xcassets */,
 				65C051ED1D58AC330008892C /* LaunchScreen.storyboard */,
 				65C051F01D58AC330008892C /* Info.plist */,
+				65FFF9641D8D9C5D00E4BCF0 /* DateFormatter.swift */,
 			);
 			path = AcceptanceMarkDemo;
 			sourceTree = SOURCE_ROOT;
@@ -433,6 +437,7 @@
 				65FFF9631D8D2DD800E4BCF0 /* DateFormatting_DateFormattingTests.swift in Sources */,
 				65FFF9611D8D2D4400E4BCF0 /* DateFormatting_DateFormattingRunner.swift in Sources */,
 				65FFF95D1D8D2BF200E4BCF0 /* DateFormatting.md in Sources */,
+				65FFF9681D8D9EA800E4BCF0 /* DateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +445,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65FFF9671D8D9EA100E4BCF0 /* DateFormatter.swift in Sources */,
 				65C051E71D58AC330008892C /* ViewController.swift in Sources */,
 				65C051E51D58AC330008892C /* AppDelegate.swift in Sources */,
 			);

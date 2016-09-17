@@ -8,6 +8,8 @@
 
 import Foundation
 
+@testable import AcceptanceMarkDemo
+
 extension DateFormatter.Style {
     
     init(styleString: String) {
@@ -36,21 +38,10 @@ class DateFormatting_DateFormattingRunner : DateFormatting_DateFormattingRunnabl
         
         let style = DateFormatter.Style(styleString: input.dateStyle)
         
-        let localized = localizedDate(from: components, localeIdentifier: input.language, style: style)
+        let dateFormatter = DateFormatter(localeIdentifier: input.language, style: style)
+        
+        let localized = dateFormatter.string(from: components) ?? ""
         
         return DateFormatting_DateFormattingOutput(localizedDate: localized)
 	}
-    
-    func localizedDate(from components: DateComponents, localeIdentifier: String, style: DateFormatter.Style) -> String {
-        
-        if let date = Calendar.current.date(from: components) {
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: localeIdentifier)
-            dateFormatter.dateStyle = style
-            dateFormatter.timeStyle = style
-            return dateFormatter.string(from: date)
-        }
-        
-        return ""
-    }
 }

@@ -1,14 +1,12 @@
 language: objective-c
 osx_image: xcode8
-#xcode_project: AcceptanceMark.xcodeproj
-#xcode_scheme: amtool
-#script: xcodebuild -project AcceptanceMark.xcodeproj -target amtool
 script: ./scripts/build-amtool.sh
-
 deploy:
   provider: releases
-  api_key: 43d9c631cd45d0624bd527ca9562d6ab71800ee1
-  file: ./build/Release/amtool
   skip_cleanup: true
+  api_key:
+    secure: yeS4dL413+FrJ1SSD0Vmb2s100SiUPJ6zOzINhSXvCIxI3uOPreuSOmTeazwjIu90fx4VXnO0ovO5FUyIP5flhzYDaDHrvEiiRfq6bwWkRHvsV34RoEGnTmBY9NJ+l3k1wxexkkj/4zwwy8gsFqF+wrz7wyRXRQ2MS7Rs6ksYIMIvXxX/HZXLwx5N95jcjr4W00MNICkaBrT089wPEaB5V5eHvM8dVFysLg38N0ZZQEQls+zkexh2pETVlfyGrqEY5KZ144h4ABrWiYEMY0QlQuhBbM3Rx2PBVewDW9F1hBTQo5RXdkCTiK50aFQulbzmgcmyXlTTeIo0DfWBxPNs614EFvLAWy6wa7TLjhlzMMDW4mjDq9kqMSzr5K5o9lul8psKKSCtRjNc3aFMFYfxQ+IJXb5GrsdKf0l6iRSnd2yMKXis40gFUoXyL7GqLWQtK44RR0eu/xlhYGlz+x62q6abJpVKk/YlCHXiLbOw/Cxxi2BpTOhS3ODeCizKBkw/UHTcT2F9Rb3hbxAabMTFtChpGimeKjd2jHU1JI1vXEUNvkMb4guNm5GIWQ0umQgF5160VYgYr8ry1kqwgMUIOkeQPYZb987HONaRIOVR9CdkwesoIvCbCeWfHU8//6mN34w0Pk0LLnO28Y+XhTKZtbsOmFWFBIpEV6qlH05PCU=
+  file: build/Release/amtool
   on:
     tags: true
+    repo: bizz84/AcceptanceMark

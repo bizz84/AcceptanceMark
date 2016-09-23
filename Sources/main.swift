@@ -8,7 +8,14 @@
 
 import Foundation
 
+let version = "0.2.0"
+
 let arguments = Arguments(arguments: ProcessInfo.processInfo.arguments)
+
+if arguments.printVersion {
+    print("amtool version \(version)")
+    exit(0)
+}
 
 guard let inputFilePath = arguments.inputFilePath else {
     print("missing input file. Syntax:\namtool -i <input-file.md> [-l swift2|swift3]")

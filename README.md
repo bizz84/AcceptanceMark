@@ -175,10 +175,7 @@ amtool -i <input-file.md> [-l swift2|swift3]
 
 * Use `-i` to specify the input file 
 * Use `-l` to specify the output language. Currently **Swift 2** and **Swift 3** are supported. **Objective-C** and other languages may be added in the future.
-
-#### Not yet implemented
-* Use `-v` to print the **amtool** version
-
+* Use `--version` to print the version number
 
 ## FAQ
 

@@ -143,13 +143,17 @@ class ImageTests_ImageLoadingTestRunner: ImageTests_ImageLoadingTestRunnable {
 
 * `XCTestCase` sublasses can specify a `setUp()` method to configure an initial state that is shared across all unit tests. This is deliberately not supported with  **AcceptanceMark** test runners, and **state-less tests are preferred and encouraged** instead.
 
-## Compilation / Installation
+## Installation
 
-* AcceptanceMark includes **amtool**, a command line tool used to generate unit tests or UI tests.
+AcceptanceMark includes **amtool**, a command line tool used to generate unit tests or UI tests.
 
-* Xcode 8 is required as **amtool** is written in Swift 3. 
+#### Pre-compiled binary
 
-To compile **amtool**, clone this repo and run the script:
+The quickest way to install **amtool** is to download the pre-compiled executable from the [project releases](https://github.com/bizz84/AcceptanceMark/releases) page.
+
+#### Compile manually
+
+Xcode 8 is required as **amtool** is written in Swift 3. To compile, clone this repo and run the script:
 
 ```
 git clone https://github.com/bizz84/AcceptanceMark
@@ -164,8 +168,6 @@ Once the build finishes, **amtool** can be found at this location:
 ```
 
 For convenience, **amtool** can then be copied to a folder in your `$PATH`.
-
-In the future, **amtool** may be distributed with a package manager of choice similar to **[rubygem](https://rubygems.org/)** or **[homebrew](http://brew.sh/)**. 
 
 ## amtool command line options
 

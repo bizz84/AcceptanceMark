@@ -151,6 +151,12 @@ AcceptanceMark includes **amtool**, a command line tool used to generate unit te
 
 The quickest way to install **amtool** is to download the pre-compiled executable from the [project releases](https://github.com/bizz84/AcceptanceMark/releases) page.
 
+Once dowloaded, don't forget to add execute permission to the binary:
+
+```
+chmod +x amtool
+```
+
 #### Compile manually
 
 Xcode 8 is required as **amtool** is written in Swift 3. To compile, clone this repo and run the script:
@@ -167,7 +173,11 @@ Once the build finishes, **amtool** can be found at this location:
 ./build/Release/amtool
 ```
 
-For convenience, **amtool** can then be copied to a folder in your `$PATH`.
+For convenience, **amtool** can be copied to a folder in your `$PATH`:
+
+```
+export PATH=$PATH:/your/path/to/amtool
+```
 
 ## amtool command line options
 

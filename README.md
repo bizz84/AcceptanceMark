@@ -1,12 +1,14 @@
 # AcceptanceMark
 
-AcceptanceMark is a tool for generating Acceptance Tests in Xcode, inspired by [Fitnesse](http://fitnesse.org/).
-
 [![License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://mit-license.org)
 [![Language](http://img.shields.io/badge/language-swift-orange.svg?style=flat)](https://developer.apple.com/swift)
 [![Build](https://img.shields.io/travis/bizz84/AcceptanceMark.svg?style=flat)](https://travis-ci.org/bizz84/AcceptanceMark)
 [![Issues](https://img.shields.io/github/issues/bizz84/AcceptanceMark.svg?style=flat)](https://github.com/bizz84/AcceptanceMark/issues)
 [![Twitter](https://img.shields.io/badge/twitter-@biz84-blue.svg?maxAge=2592000)](http://twitter.com/biz84)
+
+#### AcceptanceMark is a tool for generating Acceptance Tests in Xcode, inspired by [Fitnesse](http://fitnesse.org/).
+
+#### [Read this blog post](http://bizz84.github.io/2016/09/21/Introducing-AcceptanceMark.html) for a full introduction to AcceptanceMark.
 
 ### Fitnesse advantages
 

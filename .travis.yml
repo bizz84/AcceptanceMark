@@ -7,7 +7,7 @@ script: ./scripts/build-amtool.sh
 
 deploy:
   provider: releases
-  api_key: 806b7f3f5a179c397e5c682a27218cab2c03bfd1
+  api_key: 43d9c631cd45d0624bd527ca9562d6ab71800ee1
   file: ./build/Release/amtool
   skip_cleanup: true
   on:

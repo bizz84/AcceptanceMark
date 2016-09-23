@@ -95,8 +95,6 @@ class MarkdownTableParser: NSObject {
                 
         let values = components(for: line)
         
-        print("\(values)")
-        
         var inputs: [String] = []
         var outputs: [String] = []
         if let ioSeparatorIndex = values.index(of: "") {

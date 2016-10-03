@@ -6,8 +6,6 @@
 //  Copyright © 2016 musevisions. All rights reserved.
 //
 
-@testable import amtool
-
 
 extension MarkdownTableParserState: Equatable {
 

@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import amtool
 
 class MarkdownTableParserTests: XCTestCase {
         
@@ -33,20 +32,21 @@ class MarkdownTableParserTests: XCTestCase {
         XCTAssertEqual(state, expectedState)
     }
 
-    func testLineHeader_AnotherHeader_ErrorState() {
-        
-        let headerLine = "| name:String   || loaded:Bool  |"
-        
-        let parser = MarkdownTableParser()
-        
-        let _ = parser.parseTable(line: headerLine)
-
-        let state = parser.parseTable(line: headerLine)
-        
-        let expectedState = MarkdownTableParserState.error(error: .invalidSeparator(line: headerLine, message: ""))
-        
-        XCTAssertEqual(state, expectedState)
-    }
+    // TODO: Enable this when separator parsing logic is included
+//    func testLineHeader_AnotherHeader_ErrorState() {
+//        
+//        let headerLine = "| name:String   || loaded:Bool  |"
+//        
+//        let parser = MarkdownTableParser()
+//        
+//        let _ = parser.parseTable(line: headerLine)
+//
+//        let state = parser.parseTable(line: headerLine)
+//        
+//        let expectedState = MarkdownTableParserState.error(error: .invalidSeparator(line: headerLine, message: ""))
+//        
+//        XCTAssertEqual(state, expectedState)
+//    }
     
     func testLineHeader_NoInputsNoOutputs_ErrorState() {
         

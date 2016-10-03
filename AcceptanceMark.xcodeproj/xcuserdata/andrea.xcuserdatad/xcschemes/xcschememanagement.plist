@@ -4,20 +4,20 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>AcceptanceMark.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>0</integer>
-		</dict>
-		<key>AcceptanceMarkDemo.xcscheme</key>
+		<key>AcceptanceMarkDemo.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
 		</dict>
-		<key>AcceptanceMarkDemoTests.xcscheme</key>
+		<key>AcceptanceMarkDemoTests.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>1</integer>
+		</dict>
+		<key>amtool-tests.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
 		</dict>
 		<key>amtool.xcscheme_^#shared#^_</key>
 		<dict>
@@ -43,6 +43,11 @@
 			<true/>
 		</dict>
 		<key>65C051E11D58AC330008892C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C3F0352F1DA29F3600431364</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -9,11 +9,40 @@
 import Cocoa
 
 
+enum MarkdownTableParserError {
+    case noInputsNoOutputs(line: String)
+    case missingStartPipe(line: String)
+    case missingEndPipe(line: String)
+    case invalidHeader(line: String, message: String)
+    case contentInvalidComponentCount(line: String, message: String)
+    case invalidSeparator(line: String, message: String)
+    
+    var message: String {
+        switch self {
+        case .noInputsNoOutputs(let line): return errorString(line: line, message: "Table row has no inputs and no outputs")
+        case .missingStartPipe(let line): return errorString(line: line, message: "Table row does not start with `|` character")
+        case .missingEndPipe(let line): return errorString(line: line, message: "Table row does not end with `|` character")
+        case .invalidHeader(let line, let message): return errorString(line: line, message: message)
+        case .contentInvalidComponentCount(let line, let message): return errorString(line: line, message: message)
+        case .invalidSeparator(let line, let message): return errorString(line: line, message: message)
+        }
+    }
+    
+    private func errorString(line: String, message: String) -> String {
+        return "\(message):\n\(line)"
+    }
+}
+
 enum MarkdownTableParserState {
     case outside
     case header(inputVars: [TestSpec.Variable], outputVars: [TestSpec.Variable])
     case separator
     case content(data: TestSpec.TestData)
+    case error(error: MarkdownTableParserError)
+}
+
+enum VariablesOrError {
+    case variables(variables: [TestSpec.Variable])
     case error(message: String)
 }
 
@@ -42,8 +71,8 @@ class MarkdownTableParser: NSObject {
                 self.inputVars = inputVars
                 self.outputVars = outputVars
             }
-            if case .error(let message) = state {
-                print("\(message)")
+            if case .error(let error) = state {
+                print("\(error.message)")
             }
             
         case .header(_, _):
@@ -79,18 +108,44 @@ class MarkdownTableParser: NSObject {
     
     private func parseTableHeader(line: String) -> MarkdownTableParserState {
         
-        let (inputs, outputs) = getInputsOutputs(line: line)
+        let trimmed = (line as NSString).trimmingCharacters(in: CharacterSet.whitespaces)
+        if let error = errorMessageForTable(line: trimmed) {
+            return .error(error: error)
+        }
+
+        let (inputs, outputs) = getInputsOutputs(line: trimmed)
+        if inputs.count == 0 && outputs.count == 0 {
+            return .error(error: .noInputsNoOutputs(line: line))
+        }
         
-        guard let inputVars = parseTableHeaders(strings: inputs),
-            let outputVars = parseTableHeaders(strings: outputs) else {
-            return .error(message: "error parsing line:\n\(line)")
+        let inputHeaders = parseTableHeaders(strings: inputs)
+        let outputHeaders = parseTableHeaders(strings: outputs)
+        switch (inputHeaders, outputHeaders) {
+        case (.error(let inputMessage), .error(_)): return .error(error: .invalidHeader(line: line, message: inputMessage))
+        case (.error(let inputMessage), .variables(_)): return .error(error: .invalidHeader(line: line, message: inputMessage))
+        case (.variables(_), .error(let outputMessage)): return .error(error: .invalidHeader(line: line, message: outputMessage))
+        case (.variables(let inputVars), .variables(let outputVars)):
+        
+            if inputVars.count == inputs.count && outputVars.count == outputs.count {
+                return .header(inputVars: inputVars, outputVars: outputVars)
+            }
+            else {
+                return .error(error: .invalidHeader(line: line, message: "Invalid input / outputs"))
+            }
         }
-        if inputVars.count == inputs.count && outputVars.count == outputs.count {
-            return .header(inputVars: inputVars, outputVars: outputVars)
-        }
-        return .error(message: "error parsing line:\n\(line)\nInput vars: \(inputVars), output vars: \(outputVars)")
     }
 
+    private func errorMessageForTable(line: String) -> MarkdownTableParserError? {
+        
+        guard let first = line.characters.first, first == "|" else {
+            return .missingStartPipe(line: line)
+        }
+        guard let last = line.characters.last, last == "|" else {
+            return .missingEndPipe(line: line)
+        }
+        return nil
+    }
+    
     private func getInputsOutputs(line: String) -> ([String], [String]) {
                 
         let values = components(for: line)
@@ -109,7 +164,7 @@ class MarkdownTableParser: NSObject {
     }
     
     
-    func parseTableHeaders(strings: [String]) -> [TestSpec.Variable]? {
+    func parseTableHeaders(strings: [String]) -> VariablesOrError {
         var variables: [TestSpec.Variable] = []
         
         for string in strings {
@@ -125,23 +180,26 @@ class MarkdownTableParser: NSObject {
                     variables.append(TestSpec.Variable(name: name, type: type))
                 }
                 else {
-                    print("\(components.first!): Unrecognized variable type: \"\(components.last!)\".\nOnly Bool, Int, Float, String are supported.")
-                    return nil
+                    return .error(message: "\(components.first!): Unrecognized variable type: \"\(components.last!)\".\nOnly Bool, Int, Float, String are supported")
                 }
             }
             else {
-                print("invalid table header format: \"\(strings)\"")
-                return nil
+                return .error(message: "invalid table header format: \"\(strings)\"")
             }
         }
-        return variables
+        return .variables(variables: variables)
     }
     
     func parseContent(line: String) -> MarkdownTableParserState {
 
-        let values = components(for: line)
+        let trimmed = (line as NSString).trimmingCharacters(in: CharacterSet.whitespaces)
+        if let errorMessage = errorMessageForTable(line: trimmed) {
+            return .error(error: errorMessage)
+        }
+
+        let values = components(for: trimmed)
         if values.count - 1 != inputVars.count + outputVars.count {
-            return .error(message: "Invalid number of components in table row. Should be \(inputVars.count + outputVars.count + 1), found: \(values.count)")
+            return .error(error: .contentInvalidComponentCount(line: line, message: "Invalid number of components in table row. Should be \(inputVars.count + outputVars.count + 1), found: \(values.count)"))
         }
         
         let ioSeparatorIndex = inputVars.count

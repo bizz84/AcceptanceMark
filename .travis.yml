@@ -1,6 +1,6 @@
 language: objective-c
 osx_image: xcode8
-script: ./scripts/build-amtool.sh
+script: ./scripts/build-all.sh
 deploy:
   provider: releases
   skip_cleanup: true

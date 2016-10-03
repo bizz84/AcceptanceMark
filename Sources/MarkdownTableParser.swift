@@ -6,8 +6,7 @@
 //  Copyright © 2016 musevisions. All rights reserved.
 //
 
-import Cocoa
-
+import Foundation
 
 enum MarkdownTableParserError {
     case noInputsNoOutputs(line: String)

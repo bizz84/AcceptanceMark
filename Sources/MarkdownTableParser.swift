@@ -15,6 +15,7 @@ enum MarkdownTableParserError {
     case invalidHeader(line: String, message: String)
     case contentInvalidComponentCount(line: String, message: String)
     case invalidSeparator(line: String, message: String)
+    case contentInvalidSeparator(line: String, separator: String)
     
     var message: String {
         switch self {
@@ -24,6 +25,7 @@ enum MarkdownTableParserError {
         case .invalidHeader(let line, let message): return errorString(line: line, message: message)
         case .contentInvalidComponentCount(let line, let message): return errorString(line: line, message: message)
         case .invalidSeparator(let line, let message): return errorString(line: line, message: message)
+        case .contentInvalidSeparator(let line, let separator): return errorString(line: line, message: "Separator column should be empty. Found: \(separator)")
         }
     }
     
@@ -108,7 +110,7 @@ class MarkdownTableParser: NSObject {
     private func parseTableHeader(line: String) -> MarkdownTableParserState {
         
         let trimmed = (line as NSString).trimmingCharacters(in: CharacterSet.whitespaces)
-        if let error = errorMessageForTable(line: trimmed) {
+        if let error = errorForTable(line: trimmed) {
             return .error(error: error)
         }
 
@@ -134,7 +136,7 @@ class MarkdownTableParser: NSObject {
         }
     }
 
-    private func errorMessageForTable(line: String) -> MarkdownTableParserError? {
+    private func errorForTable(line: String) -> MarkdownTableParserError? {
         
         guard let first = line.characters.first, first == "|" else {
             return .missingStartPipe(line: line)
@@ -163,7 +165,7 @@ class MarkdownTableParser: NSObject {
     }
     
     
-    func parseTableHeaders(strings: [String]) -> VariablesOrError {
+    private func parseTableHeaders(strings: [String]) -> VariablesOrError {
         var variables: [TestSpec.Variable] = []
         
         for string in strings {
@@ -189,11 +191,11 @@ class MarkdownTableParser: NSObject {
         return .variables(variables: variables)
     }
     
-    func parseContent(line: String) -> MarkdownTableParserState {
+    private func parseContent(line: String) -> MarkdownTableParserState {
 
         let trimmed = (line as NSString).trimmingCharacters(in: CharacterSet.whitespaces)
-        if let errorMessage = errorMessageForTable(line: trimmed) {
-            return .error(error: errorMessage)
+        if let error = errorForTable(line: trimmed) {
+            return .error(error: error)
         }
 
         let values = components(for: trimmed)
@@ -202,12 +204,16 @@ class MarkdownTableParser: NSObject {
         }
         
         let ioSeparatorIndex = inputVars.count
+        let separatorValue = values[ioSeparatorIndex].trimmingCharacters(in: CharacterSet.whitespaces)
+        if separatorValue != "" {
+            return .error(error: .contentInvalidSeparator(line: line, separator: separatorValue))
+        }
         let inputs = Array(values.dropLast(values.count - ioSeparatorIndex))
         let outputs = Array(values.dropFirst(ioSeparatorIndex + 1))
         return .content(data: TestSpec.TestData(inputs: inputs, outputs: outputs))
     }
     
-    func components(for line: String) -> [String] {
+    private func components(for line: String) -> [String] {
         
         var components = (line as NSString).components(separatedBy: "|").map {
             return ($0 as NSString).trimmingCharacters(in: CharacterSet.whitespaces)

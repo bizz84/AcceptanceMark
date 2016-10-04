@@ -47,7 +47,11 @@ enum MarkdownLineType {
 
 class MarkdownDocumentParser: NSObject {
     
-    let tableParser = MarkdownTableParser()
+    let tableParser: MarkdownTableParser
+    
+    init(tableParser: MarkdownTableParser = MarkdownTableParser()) {
+        self.tableParser = tableParser
+    }
 
     func parse(fileContents: String, inputFilePath: String) -> MarkdownParseResult {
         
@@ -67,7 +71,7 @@ class MarkdownDocumentParser: NSObject {
      * - Beginning of a TestSpec is marked by a heading line (one or more # characters)
      * - End of a TestSpec is marked by a new heading line, or end of file
      */
-    func parse(lines: [String], inputFilePath: String) -> [TestSpec] {
+    private func parse(lines: [String], inputFilePath: String) -> [TestSpec] {
         
         let pathComponents = (inputFilePath as NSString).components(separatedBy: "/")
         let fileName = pathComponents.last ?? ""
@@ -104,7 +108,7 @@ class MarkdownDocumentParser: NSObject {
         return testSpecs
     }
     
-    func update(testSpec: inout TestSpec, with tableParser: MarkdownTableParser, testLines: [String]) -> Bool {
+    private func update(testSpec: inout TestSpec, with tableParser: MarkdownTableParser, testLines: [String]) -> Bool {
         
         if tableParser.hasValidData {
             testSpec.inputVars = tableParser.inputVars
@@ -116,9 +120,7 @@ class MarkdownDocumentParser: NSObject {
         return false
     }
     
-    func parseHeading(line: String) -> String {
+    private func parseHeading(line: String) -> String {
         return line.trimmedNonAlphanumericCharacters()
     }
 }
-
-// TODO: MarkdownDocumentParserTests

@@ -99,4 +99,102 @@ class MarkdownTableParserTests: XCTestCase {
         XCTAssertEqual(state, expectedState)
     }
     
+    // MARK: Separator tests
+    
+    
+    // MARK: Content tests
+    func testLineContent_MissingStartPipe_Error() {
+
+        let parser = makeParser(headerLine:    "| name:String   || loaded:Bool  |",
+                                separatorLine: "|---------------||--------------|")
+
+        let contentLine = "available.png   || true |"
+
+        let state = parser.parseTable(line: contentLine)
+
+        let expectedState = MarkdownTableParserState.error(error: .missingStartPipe(line: contentLine))
+
+        XCTAssertEqual(state, expectedState)
+    }
+    
+    func testLineContent_MissingEndPipe_Error() {
+        
+        let parser = makeParser(headerLine:    "| name:String   || loaded:Bool  |",
+                                separatorLine: "|---------------||--------------|")
+        
+        let contentLine = "| available.png   || true"
+        
+        let state = parser.parseTable(line: contentLine)
+        
+        let expectedState = MarkdownTableParserState.error(error: .missingEndPipe(line: contentLine))
+        
+        XCTAssertEqual(state, expectedState)
+    }
+
+    func testLineContent_ColumnCountLessThanVariablesCount_Error() {
+        
+        let parser = makeParser(headerLine:    "| name:String   || loaded:Bool  |",
+                                separatorLine: "|---------------||--------------|")
+        
+        let contentLine = "| available.png   ||"
+        
+        let state = parser.parseTable(line: contentLine)
+        
+        let expectedState = MarkdownTableParserState.error(error: .contentInvalidComponentCount(line: contentLine, message: "Invalid number of components in table row. Should be 3, found: 2"))
+        
+        XCTAssertEqual(state, expectedState)
+    }
+    func testLineContent_ColumnCountGreaterThanVariablesCount_Error() {
+        
+        let parser = makeParser(headerLine:    "| name:String   || loaded:Bool  |",
+                                separatorLine: "|---------------||--------------|")
+        
+        let contentLine = "| available.png   || true | false |"
+        
+        let state = parser.parseTable(line: contentLine)
+        
+        let expectedState = MarkdownTableParserState.error(error: .contentInvalidComponentCount(line: contentLine, message: "Invalid number of components in table row. Should be 3, found: 4"))
+        
+        XCTAssertEqual(state, expectedState)
+    }
+    
+    func testLineContent_CorrectColumnCount_CreatesInputsOutputs() {
+        
+        let parser = makeParser(headerLine:    "| name:String   || loaded:Bool  |",
+                                separatorLine: "|---------------||--------------|")
+        
+        let contentLine = "| available.png   || true |"
+            
+        let state = parser.parseTable(line: contentLine)
+        
+        let expectedState = MarkdownTableParserState.content(data: TestSpec.TestData(inputs: [ "available.png" ], outputs: [ "true" ]))
+
+        XCTAssertEqual(state, expectedState)
+    }
+    
+    func testLineContent_InvalidSeparatorColumn_Error() {
+
+        let parser = makeParser(headerLine:    "| name:String   || loaded:Bool  |",
+                                separatorLine: "|---------------||--------------|")
+        
+        let contentLine = "| available.png   |invalid| true |"
+        
+        let state = parser.parseTable(line: contentLine)
+        
+        let expectedState = MarkdownTableParserState.error(error: .contentInvalidSeparator(line: contentLine, separator: "invalid"))
+        
+        XCTAssertEqual(state, expectedState)
+    }
+    
+    // MARK: Helpers
+    func makeParser(headerLine: String, separatorLine: String) -> MarkdownTableParser {
+        
+        let parser = MarkdownTableParser()
+        
+        let _ = parser.parseTable(line: headerLine)
+        let _ = parser.parseTable(line: separatorLine)
+        
+        return parser
+    }
+    
 }

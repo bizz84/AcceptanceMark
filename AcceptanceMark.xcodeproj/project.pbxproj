@@ -18,6 +18,7 @@
 		65FFF9681D8D9EA800E4BCF0 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF9641D8D9C5D00E4BCF0 /* DateFormatter.swift */; };
 		65FFF9691D8D9F6200E4BCF0 /* ImageTests_ImageLoadingRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65C051DB1D58AC0A0008892C /* ImageTests_ImageLoadingRunner.swift */; };
 		65FFF96A1D8D9F6400E4BCF0 /* ImageTests_ImageLoadingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65FFF95A1D8C712800E4BCF0 /* ImageTests_ImageLoadingTests.swift */; };
+		C390F3B51DA41752001A50D0 /* MarkdownDocumentParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C390F3B41DA41752001A50D0 /* MarkdownDocumentParserTests.swift */; };
 		C3ACE56F1D951DB500971FD6 /* Arguments.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ACE5681D951DB500971FD6 /* Arguments.swift */; };
 		C3ACE5701D951DB500971FD6 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ACE5691D951DB500971FD6 /* main.swift */; };
 		C3ACE5711D951DB500971FD6 /* MarkdownDocumentParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3ACE56A1D951DB500971FD6 /* MarkdownDocumentParser.swift */; };
@@ -75,6 +76,7 @@
 		65FFF9621D8D2DD800E4BCF0 /* DateFormatting_DateFormattingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatting_DateFormattingTests.swift; sourceTree = "<group>"; };
 		65FFF9641D8D9C5D00E4BCF0 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		A758C14CE7379AD0E3954562 /* libPods-amtool.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-amtool.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C390F3B41DA41752001A50D0 /* MarkdownDocumentParserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MarkdownDocumentParserTests.swift; sourceTree = "<group>"; };
 		C3ACE5661D951BAC00971FD6 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		C3ACE5681D951DB500971FD6 /* Arguments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Arguments.swift; sourceTree = "<group>"; };
 		C3ACE5691D951DB500971FD6 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			children = (
 				C3F0353F1DA2A3A100431364 /* MarkdownTableParser+Equatable.swift */,
 				C3F0353D1DA29FD000431364 /* MarkdownTableParserTests.swift */,
+				C390F3B41DA41752001A50D0 /* MarkdownDocumentParserTests.swift */,
 				C3F0353A1DA29F8500431364 /* Info.plist */,
 			);
 			path = Tests;
@@ -417,6 +420,7 @@
 			files = (
 				65FFF96A1D8D9F6400E4BCF0 /* ImageTests_ImageLoadingTests.swift in Sources */,
 				65FFF9631D8D2DD800E4BCF0 /* DateFormatting_DateFormattingTests.swift in Sources */,
+				C390F3B51DA41752001A50D0 /* MarkdownDocumentParserTests.swift in Sources */,
 				65FFF9691D8D9F6200E4BCF0 /* ImageTests_ImageLoadingRunner.swift in Sources */,
 				65FFF9611D8D2D4400E4BCF0 /* DateFormatting_DateFormattingRunner.swift in Sources */,
 				65FFF9681D8D9EA800E4BCF0 /* DateFormatter.swift in Sources */,

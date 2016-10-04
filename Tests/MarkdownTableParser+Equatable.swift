@@ -69,6 +69,7 @@ func == (lhs: MarkdownTableParserError, rhs: MarkdownTableParserError) -> Bool {
     case (let .invalidHeader(leftLine, leftMessage), let .invalidHeader(rightLine, rightMessage)): return leftLine == rightLine && leftMessage == rightMessage
     case (let .contentInvalidComponentCount(leftLine, leftMessage), let .contentInvalidComponentCount(rightLine, rightMessage)): return leftLine == rightLine && leftMessage == rightMessage
     case (let .invalidSeparator(leftLine, leftMessage), let .invalidSeparator(rightLine, rightMessage)): return leftLine == rightLine && leftMessage == rightMessage
+    case (let .contentInvalidSeparator(leftLine, leftSeparator), let .contentInvalidSeparator(rightLine, rightSeparator)): return leftLine == rightLine && leftSeparator == rightSeparator
     default: return false
     }
 }

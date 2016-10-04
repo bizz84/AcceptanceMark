@@ -97,7 +97,7 @@ class MarkdownDocumentParser: NSObject {
                 testSpec.title = parseHeading(line: line)
                 testSpecLines = [line]
             case .table:
-                let _ = tableParser.parseTable(line: line)
+                let _ = tableParser.parseRow(line: line)
                 testSpecLines.append(line)
             case .other:
                 break

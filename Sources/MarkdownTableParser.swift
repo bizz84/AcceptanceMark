@@ -65,7 +65,7 @@ class MarkdownTableParser: NSObject {
         return outputVars.count > 0 && testsData.count > 0
     }
     
-    func parseTable(line: String) -> MarkdownTableParserState {
+    func parseRow(line: String) -> MarkdownTableParserState {
         switch state {
         case .outside:
             reset()

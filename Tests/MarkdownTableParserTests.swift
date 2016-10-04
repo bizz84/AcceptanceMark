@@ -27,7 +27,7 @@ class MarkdownTableParserTests: XCTestCase {
      
         let parser = MarkdownTableParser()
 
-        let state = parser.parseTable(line: headerLine)
+        let state = parser.parseRow(line: headerLine)
         
         let expectedState = MarkdownTableParserState.header(inputVars: [ TestSpec.Variable(name: "name", type: .string) ], outputVars: [ TestSpec.Variable(name: "loaded", type: .bool) ])
         
@@ -56,7 +56,7 @@ class MarkdownTableParserTests: XCTestCase {
         
         let parser = MarkdownTableParser()
         
-        let state = parser.parseTable(line: headerLine)
+        let state = parser.parseRow(line: headerLine)
 
         let expectedState = MarkdownTableParserState.error(error: .noInputsNoOutputs(line: headerLine))
         
@@ -69,7 +69,7 @@ class MarkdownTableParserTests: XCTestCase {
         
         let parser = MarkdownTableParser()
         
-        let state = parser.parseTable(line: headerLine)
+        let state = parser.parseRow(line: headerLine)
         
         let expectedState = MarkdownTableParserState.header(inputVars: [ ], outputVars: [ TestSpec.Variable(name: "valid", type: .bool) ])
         
@@ -82,7 +82,7 @@ class MarkdownTableParserTests: XCTestCase {
         
         let parser = MarkdownTableParser()
         
-        let state = parser.parseTable(line: headerLine)
+        let state = parser.parseRow(line: headerLine)
         
         let expectedState = MarkdownTableParserState.error(error: .missingStartPipe(line: headerLine))
         
@@ -94,7 +94,7 @@ class MarkdownTableParserTests: XCTestCase {
         
         let parser = MarkdownTableParser()
         
-        let state = parser.parseTable(line: headerLine)
+        let state = parser.parseRow(line: headerLine)
         
         let expectedState = MarkdownTableParserState.error(error: .missingEndPipe(line: headerLine))
         
@@ -112,7 +112,7 @@ class MarkdownTableParserTests: XCTestCase {
 
         let contentLine = "available.png   || true |"
 
-        let state = parser.parseTable(line: contentLine)
+        let state = parser.parseRow(line: contentLine)
 
         let expectedState = MarkdownTableParserState.error(error: .missingStartPipe(line: contentLine))
 
@@ -126,7 +126,7 @@ class MarkdownTableParserTests: XCTestCase {
         
         let contentLine = "| available.png   || true"
         
-        let state = parser.parseTable(line: contentLine)
+        let state = parser.parseRow(line: contentLine)
         
         let expectedState = MarkdownTableParserState.error(error: .missingEndPipe(line: contentLine))
         
@@ -140,7 +140,7 @@ class MarkdownTableParserTests: XCTestCase {
         
         let contentLine = "| available.png   ||"
         
-        let state = parser.parseTable(line: contentLine)
+        let state = parser.parseRow(line: contentLine)
         
         let expectedState = MarkdownTableParserState.error(error: .contentInvalidComponentCount(line: contentLine, message: "Invalid number of components in table row. Should be 3, found: 2"))
         
@@ -153,7 +153,7 @@ class MarkdownTableParserTests: XCTestCase {
         
         let contentLine = "| available.png   || true | false |"
         
-        let state = parser.parseTable(line: contentLine)
+        let state = parser.parseRow(line: contentLine)
         
         let expectedState = MarkdownTableParserState.error(error: .contentInvalidComponentCount(line: contentLine, message: "Invalid number of components in table row. Should be 3, found: 4"))
         
@@ -167,7 +167,7 @@ class MarkdownTableParserTests: XCTestCase {
         
         let contentLine = "| available.png   || true |"
             
-        let state = parser.parseTable(line: contentLine)
+        let state = parser.parseRow(line: contentLine)
         
         let expectedState = MarkdownTableParserState.content(data: TestSpec.TestData(inputs: [ "available.png" ], outputs: [ "true" ]))
 
@@ -181,7 +181,7 @@ class MarkdownTableParserTests: XCTestCase {
         
         let contentLine = "| available.png   |invalid| true |"
         
-        let state = parser.parseTable(line: contentLine)
+        let state = parser.parseRow(line: contentLine)
         
         let expectedState = MarkdownTableParserState.error(error: .contentInvalidSeparator(line: contentLine, separator: "invalid"))
         
@@ -193,8 +193,8 @@ class MarkdownTableParserTests: XCTestCase {
         
         let parser = MarkdownTableParser()
         
-        let _ = parser.parseTable(line: headerLine)
-        let _ = parser.parseTable(line: separatorLine)
+        let _ = parser.parseRow(line: headerLine)
+        let _ = parser.parseRow(line: separatorLine)
         
         return parser
     }

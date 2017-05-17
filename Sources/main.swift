@@ -34,7 +34,7 @@ guard let data = FileManager.default.contents(atPath: inputFilePath) else {
     exit(0)
 }
 
-guard let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as? String else {
+guard let string = NSString(data: data, encoding: String.Encoding.utf8.rawValue) as String? else {
     print("Could not decode file contents at path: \(inputFilePath)")
     exit(0)
 }

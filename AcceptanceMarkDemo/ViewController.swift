@@ -19,7 +19,7 @@ class ViewController: UIViewController {
         
         let samplePath = Bundle.main.path(forResource: "sample", ofType: "md")
 
-        print("\(samplePath)")
+        print("\(String(describing: samplePath))")
     }
 
     override func didReceiveMemoryWarning() {
